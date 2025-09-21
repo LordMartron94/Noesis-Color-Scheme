@@ -1,0 +1,24 @@
+{
+  "variables": {
+    "background": "#1E1E1E",   // dark neutral background
+    "foreground": "#FF00AA"    // vibrant pink
+  },
+
+  "globals": {
+    "background": "var(background)",
+    "foreground": "var(foreground)",
+    "caret": "#FFFFFF",
+    "selection": "#333333"
+  },
+
+  "rules": [
+    {
+      "scope": "source.python",
+      "foreground": "var(foreground)"
+    },
+    {
+      "scope": "comment, string, constant, keyword, storage, entity, variable, invalid",
+      "foreground": "var(foreground)"
+    }
+  ]
+}
