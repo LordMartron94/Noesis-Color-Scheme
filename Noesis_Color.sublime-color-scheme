@@ -1,5 +1,5 @@
 // DOCUMENTATION
-// V1 Created by Mr. Hoorn on Monday 24 September 2025
+// V1.1 Created by Mr. Hoorn on Monday 24 September 2025
 //
 // Color scheme in dark mode intended for highly productive programming.
 // Should evoke feelings of power, control, highly advanced tech, and godliness.
@@ -10,7 +10,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.0.0",
+  "version": "1.1.0",
 
   // --- Variables ---
   "variables": {
@@ -176,7 +176,7 @@
       "name": "Function Decorators",
       "scope": "meta.annotation",
       "foreground": "var(syntax_functions_decorators)",
-      "font_style": "underline",
+      "font_style": "underline italic",
     },
     {
       "name": "Function Calls - DUNDER",
@@ -188,6 +188,7 @@
       "name": "Functions - Parameters",
       "scope": "variable.parameter",
       "foreground": "var(syntax_functions_parameters)",
+      "font_style": "italic",
     },
 
     {
@@ -217,14 +218,21 @@
 
     {
       "name": "Import paths",
-      "scope": "meta.statement.import",
+      "scope": "meta.statement.import -keyword",
       "foreground": "var(syntax_import_path)",
+      "font_style": "italic"
     },   
     {      
       "name": "Variables",
-      "scope": "(meta.path | meta.statement.import | meta.statement.exception.catch) & meta.generic-name",
+      "scope": "(meta.path | meta.statement.exception.catch) & meta.generic-name",
       "foreground": "var(syntax_variables)"
     }, 
+    {
+      "name": "Variables - Imports",
+      "scope": "meta.statement.import & (meta.generic-name | variable)",
+      "foreground": "var(syntax_variables)",
+      "font_style": "italic",
+    },
     {      
       "name": "Variables - Private",
       "scope": "variable.other.private",
@@ -267,13 +275,15 @@
     {
       "name": "Literals - Reserved",
       "scope": "constant.language.boolean, constant.language.null, constant.language.nan, constant.language.infinity",
-      "foreground": "var(syntax_literals_reserved)"
+      "foreground": "var(syntax_literals_reserved)",
+      "font_style": "bold"
     },
 
     { 
       "name": "Constants",
-      "scope": "variable.other.constant",
-      "foreground": "var(syntax_constants)"
+      "scope": "variable.other.constant -meta.statement.import",
+      "foreground": "var(syntax_constants)",
+      "font_style": "bold"
     },
     { 
       "name": "Storage Modifiers",
@@ -321,7 +331,8 @@
     {
       "name": "Comments - Doc - Arg Types",
       "scope": "support.type.documentation",
-      "foreground": "var(syntax_types)"
+      "foreground": "var(syntax_types)",
+      "font_style": ""
     },
     {
       "name": "Comments - Doc - Arg Descriptions",
@@ -334,19 +345,19 @@
       "name": "Comments - TODO - Line",
       "scope": "comment.line.todo",
       "foreground": "var(syntax_comment_todo)",
-      "font_style": "bold italic"
+      "font_style": "bold italic underline"
     },
     {
       "name": "Comments - TODO - Keyword",
       "scope": "keyword.other.todo.comment",
       "foreground": "var(syntax_comment_todo_keyword)",
-      "font_style": "bold"
+      "font_style": "bold underline"
     },
 
     {
       "name": "Illegal",
       "scope": "invalid",
-      "font_style": "underline",
+      "font_style": "underline bold",
       "foreground": "var(_error)",
     },
 
