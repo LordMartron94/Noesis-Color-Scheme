@@ -10,7 +10,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.2.0",
+  "version": "1.2.1",
 
   // --- Variables ---
   "variables": {
@@ -210,7 +210,7 @@
     },
     {
       "name": "Classes - References",
-      "scope": "support.class",
+      "scope": "support.class -support.class.typing",
       "foreground": "var(syntax_classes)",
       "font_style": "underline",
     },
