@@ -10,7 +10,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.1.0",
+  "version": "1.2.0",
 
   // --- Variables ---
   "variables": {
@@ -107,7 +107,8 @@
     "_meta_missed": "var(basePink0)",
     "_line_numbers": "var(baseNeutral0)",
     "_caret": "var(baseNeutral1)",
-    "_error": "var(baseWhite0)"
+    "_error": "var(baseWhite0)",
+    "_rulers": "var(baseNeutral0)"
   },
 
   // --- Globals ---
@@ -115,6 +116,10 @@
     "background": "var(background_default)",
     "foreground": "var(_meta_missed)",
     "caret": "var(_caret)",
+    "rulers": "var(_rulers)",
+    "guide": "var(_rulers)",
+    "active_guide": "var(_rulers)",
+    "stack_guide": "var(_rulers)",
 
     // Selection
     "selection": "var(background_alt2)",
