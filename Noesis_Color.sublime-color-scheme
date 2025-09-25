@@ -9,7 +9,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.2.2",
+  "version": "1.2.3",
   // --- Variables ---
   "variables": {
     // BASE - BG
@@ -259,7 +259,7 @@
     },
     {
       "name": "Storage Modifiers",
-      "scope": "storage.modifier",
+      "scope": "storage.modifier, storage.type",
       "foreground": "var(syntax_storage_modifier)"
     },
     {
