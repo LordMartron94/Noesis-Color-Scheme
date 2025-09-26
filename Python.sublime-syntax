@@ -1,0 +1,105 @@
+%YAML 1.2
+---
+name: Python Extended
+scope: source.python
+version: 2
+
+extends: Packages/Python/Python.sublime-syntax
+
+contexts:
+  expressions:
+    - meta_prepend: true
+    - include: private-vars
+    - include: interface-references
+
+  name-content:
+    - meta_prepend: true
+    - include: private-vars
+
+  dotted-name-content:
+    - meta_prepend: true
+    - include: private-vars
+    - include: interface-references
+
+  class-definition-name:
+    - meta_prepend: true
+    - include: interface-definitions
+
+  class-definition-base-list-body:
+    - meta_prepend: true
+    - include: interface-references
+
+  comment-body:
+    - meta_prepend: true
+    - include: todo
+
+  double-quoted-docstring-body:
+    - meta_prepend: true
+    - include: docstring-tags
+
+  single-quoted-docstring-body:
+    - meta_prepend: true
+    - include: docstring-tags
+
+  private-vars:
+    # Dunder (magic) methods
+    - match: '\b__[a-zA-Z_]\w*__\b'
+      scope: variable.language.dunder.python
+
+    # Strong private constant: __foo (not dunder)
+    - match: '\b(__[A-Z_]\w*)\b(?!__)'
+      captures:
+        0: variable.other.constant.private.strong.python
+
+    # Private constant single underscore: _foo
+    - match: '\b_([A-Z_]\w*)\b'
+      scope: variable.other.constant.private.python
+
+    # Strong private: __foo (not dunder)
+    - match: '\b(__[a-zA-Z_]\w*)\b(?!__)'
+      captures:
+        0: variable.other.private.strong.python
+
+    # Private single underscore: _foo
+    - match: '\b_([a-zA-Z_]\w*)\b'
+      scope: variable.other.private.python
+
+  interface-definitions:
+    - match: '\bI[A-Z][a-zA-Z0-9_]*\b'
+      scope: entity.name.class.python support.class.interface.python
+
+  interface-references:
+    - match: '\bI[A-Z][a-zA-Z0-9_]*\b'
+      scope: entity.other.inherited-class.python support.class.interface.python
+
+  todo:
+    - match: '\bTODO\b'
+      scope: keyword.other.todo.comment.python
+      push:
+        - meta_scope: comment.line.todo.python
+        - match: '\n'
+          pop: true
+
+  docstring-tags:
+    # Section headers like Args:, Returns:, Raises:
+    - match: '^\s*(Args|Arguments|Parameters|Returns|Raises|Yields|Examples|Note|Notes|See Also|References)(\s*:)'
+      captures:
+        1: keyword.other.documentation.section.python
+        2: punctuation.separator.documentation.python
+
+    # Arg entries: "name (type): description"
+    - match: '^\s+([a-zA-Z_]\w*)\s*(\()\s*([^)]+)\s*(\))(\s*:\s*)(.*)$'
+      captures:
+        1: variable.parameter.documentation.python          # param name
+        2: punctuation.definition.group.begin.python        # (
+        3: support.type.documentation.python                # type
+        4: punctuation.definition.group.end.python          # )
+        5: punctuation.separator.documentation.python       # colon separator
+        6: comment.block.documentation.description.python   # description
+
+    # Return/Yield/Raises entries: "Type: description"
+    - match: '^\s+([^:]+)(\s*:\s*)(.*)$'
+      captures:
+        1: support.type.documentation.python                # type/exception
+        2: punctuation.separator.documentation.python       # colon separator
+        3: comment.block.documentation.description.python   # description
