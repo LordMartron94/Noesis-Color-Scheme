@@ -1,10 +1,16 @@
 # Noesis Color Scheme
 
-## Examples:
-![Image 1](./examples/00_example.png)
-![Image 2](./examples/01_example.png)
-![Image 3](./examples/02_example.png)
-![Image 4](./examples/03_example.png)
+## Examples
+
+<details>
+<summary>Click to expand screenshots</summary>
+
+| | |
+|---|---|
+| <img src="./examples/00_example.png" width="400"> | <img src="./examples/01_example.png" width="400"> |
+| <img src="./examples/02_example.png" width="400"> | <img src="./examples/03_example.png" width="400"> |
+
+</details>
 
 ---------
 
