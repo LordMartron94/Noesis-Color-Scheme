@@ -9,7 +9,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.2.4",
+  "version": "1.2.5",
   // --- Variables ---
   "variables": {
     // BASE - BG
@@ -231,12 +231,12 @@
     },
     {
       "name": "Literals - Strings - Double Quoted",
-      "scope": "string.quoted.double, string.quoted.double punctuation.definition.string",
+      "scope": "(string.quoted.double, string.quoted.double punctuation.definition.string) -meta.type -meta.typing",
       "foreground": "var(syntax_literals_string_double_quote)"
     },
     {
       "name": "Literals - Strings - Single Quoted",
-      "scope": "string.quoted.single, string.quoted.single punctuation.definition.string",
+      "scope": "(string.quoted.single, string.quoted.single punctuation.definition.string ) -meta.type -meta.typing",
       "foreground": "var(syntax_literals_string_single_quote)"
     },
     {
@@ -257,25 +257,25 @@
     },
     {
       "name": "Constants",
-      "scope": "variable.other.constant -meta.statement.import",
+      "scope": "variable.other.constant -meta.statement.import -meta.type -meta.typing",
       "foreground": "var(syntax_constants)",
       "font_style": "bold"
     },
     {
       "name": "Constants - private",
-      "scope": "variable.other.constant.private -meta.statement.import",
+      "scope": "variable.other.constant.private -meta.statement.import -meta.type -meta.typing",
       "foreground": "var(syntax_constants_private)",
       "font_style": "bold"
     },
     {
       "name": "Constants - strong private",
-      "scope": "variable.other.constant.private.strong -meta.statement.import",
+      "scope": "variable.other.constant.private.strong -meta.statement.import -meta.type -meta.typing",
       "foreground": "var(syntax_constants_private_strong)",
       "font_style": "bold"
     },
     {
       "name": "Storage Modifiers",
-      "scope": "storage.modifier, storage.type",
+      "scope": "storage.modifier, storage.type, constant.character.escape",
       "foreground": "var(syntax_storage_modifier)"
     },
     {
