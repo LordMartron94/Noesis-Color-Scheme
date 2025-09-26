@@ -1,0 +1,353 @@
+// DOCUMENTATION
+// V1.1 Created by Mr. Hoorn on Monday 24 September 2025
+//
+// Color scheme in dark mode intended for highly productive programming.
+// Should evoke feelings of power, control, highly advanced tech, and godliness.
+// 
+// END DOCUMENTATION
+{
+  // --- Metadata ---
+  "name": "Noesis Color Theme",
+  "author": "Mr. Hoorn",
+  "version": "1.2.4",
+  // --- Variables ---
+  "variables": {
+    // BASE - BG
+    "base0": "#171a2b",
+    "base1": "#1e2238",
+    "base2": "#282d4a",
+    "base3": "#373d5e",
+    // Base - FG - Neutrals
+    "baseNeutral0": "#5b6273", // Quite dimmed
+    "baseNeutral1": "#8f9ab5", // More obvious
+    // HUES - BG
+    "baseGreen0": "#689669",
+    "baseOrange0": "#C76D35",
+    "baseRed0": "#a63848",
+    // HUES - FG
+    "basePink0": "#faafe6",
+    "baseCyan0": "#2290cc",
+    "baseCyan1": "#29adf5",
+    "baseCyan2": "#1a6a99",
+    "baseCyan3": "#1f7fb5",
+    "baseTeal0": "#4eb5a8",
+    "baseBlue0": "#8e9afa",
+    "baseBlue1": "#8ecefa",
+    "baseBlue2": "#5a9bfa",
+    "baseBlue3": "#4ebcd4",
+    "basePurple0": "#9d73fa",
+    "basePurple1": "#7343de",
+    "baseGreen_fg0": "#8fcc91",
+    "baseGreen_fg1": "#81b883",
+    "baseGreen_fg2": "#69966b",
+    "baseGold0": "#bf9e4a",
+    "baseGold1": "#f5ca5f",
+    "baseGold2": "#9c813c",
+    "baseGold3": "#806931",
+    "baseOrange_fg0": "#faa86b",
+    "baseOrange_fg1": "#fa964b",
+    "baseOrange_fg2": "#e69b63",
+    "baseRed_fg0": "#f52528",
+    "baseWhite0": "#ffffff",
+    // BG
+    "background_default": "var(base0)",
+    "background_alt": "var(base1)",
+    "background_alt2": "var(base2)",
+    "background_accent": "var(base3)",
+    // SYNTAX
+    "syntax_types": "var(baseBlue0)",
+    "syntax_keyword": "var(basePurple0)",
+    "syntax_variables": "var(baseGreen_fg0)",
+    "syntax_variables_private": "var(baseGreen_fg1)",
+    "syntax_variables_private_strong": "var(baseGreen_fg2)",
+    "syntax_constants": "var(baseGold0)",
+    "syntax_constants_private": "var(baseGold2)",
+    "syntax_constants_private_strong": "var(baseGold3)",
+    "syntax_storage_modifier": "var(baseGold1)",
+    "syntax_functions_definition": "var(baseCyan0)",
+    "syntax_functions_call": "var(baseCyan1)",
+    "syntax_functions_dunder_def": "var(baseCyan2)",
+    "syntax_functions_dunder_call": "var(baseCyan3)",
+    "syntax_functions_parameters": "var(baseTeal0)",
+    "syntax_functions_decorators": "var(baseTeal0)",
+    "syntax_classes": "var(baseBlue2)",
+    "syntax_classes_interfaces": "var(baseBlue3)",
+    "syntax_literals_numeric": "var(baseBlue1)",
+    "syntax_literals_reserved": "var(basePurple1)",
+    "syntax_literals_string_double_quote": "var(baseOrange_fg0)",
+    "syntax_literals_string_single_quote": "var(baseOrange_fg1)",
+    "syntax_literals_string_special": "var(baseOrange_fg2)",
+    "syntax_import_path": "var(baseNeutral1)",
+    "syntax_punctuation_default": "var(baseNeutral0)",
+    "syntax_comment_line": "var(baseRed_fg0)",
+    "syntax_comment_block": "var(baseNeutral1)",
+    "syntax_comment_doc": "var(baseNeutral1)",
+    "syntax_comment_doc_header": "var(baseGold0)",
+    "syntax_comment_todo": "var(baseGold1)",
+    "syntax_comment_todo_keyword": "var(baseGold1)",
+    // SPECIAL
+    // Special - BG
+    "_git_added": "var(baseGreen0)",
+    "_git_modified": "var(baseOrange0)",
+    "_git_deleted": "var(baseRed0)",
+    // Special - FG
+    "_meta_missed": "var(basePink0)",
+    "_line_numbers": "var(baseNeutral0)",
+    "_caret": "var(baseNeutral1)",
+    "_error": "var(baseWhite0)",
+    "_rulers": "var(baseNeutral0)"
+  },
+  // --- Globals ---
+  "globals": {
+    "background": "var(background_default)",
+    "foreground": "var(_meta_missed)",
+    "caret": "var(_caret)",
+    "rulers": "var(_rulers)",
+    "guide": "var(_rulers)",
+    "active_guide": "var(_rulers)",
+    "stack_guide": "var(_rulers)",
+    // Selection
+    "selection": "var(background_alt2)",
+    "selection_border": "var(background_accent)",
+    "selection_border_width": "2",
+    // Gutter
+    "line_highlight": "var(background_alt2)",
+    "gutter": "var(background_alt)",
+    "gutter_foreground": "var(_line_numbers)",
+    "gutter_foreground_highlight": "var(_line_numbers)",
+    // Git
+    "line_diff_added": "var(_git_added)",
+    "line_diff_modified": "var(_git_modified)",
+    "line_diff_deleted": "var(_git_deleted)",
+    "popup_css": "html, body { background-color: #171a2b; color: #8f9ab5; } ",
+    "phantom_css": "span.nums { color: #5a9bfa; } span.context { color: #8f9ab5; } div.scope { color: #8f9ab5; }"
+  },
+  // --- Rules ---
+  "rules": [
+    {
+      "name": "Keywords and other Built-In/Reserved stuff",
+      "scope": "(keyword, punctuation.section.block, punctuation.section.function, punctuation.section.class, variable.language, constant.language, punctuation.accessor) -keyword.other.todo.comment",
+      "foreground": "var(syntax_keyword)",
+    },
+    {
+      "name": "Async",
+      "scope": "keyword.declaration.async",
+      "font_style": "italic"
+    },
+    {
+      "name": "Typing",
+      "scope": "support.class.typing, support.type, meta.type",
+      "foreground": "var(syntax_types)",
+    },
+    {
+      "name": "Function Definitions",
+      "scope": "meta.function",
+      "foreground": "var(syntax_functions_definition)",
+    },
+    {
+      "name": "Function Definitions - DUNDER",
+      "scope": "support.function.magic",
+      "foreground": "var(syntax_functions_dunder_def)",
+      "font_style": "italic",
+    },
+    {
+      "name": "Function Calls",
+      "scope": "meta.function-call",
+      "foreground": "var(syntax_functions_call)",
+    },
+    {
+      "name": "Function Decorators",
+      "scope": "meta.annotation",
+      "foreground": "var(syntax_functions_decorators)",
+      "font_style": "underline italic",
+    },
+    {
+      "name": "Function Calls - DUNDER",
+      "scope": "support.variable.magic",
+      "foreground": "var(syntax_functions_dunder_call)",
+      "font_style": "italic",
+    },
+    {
+      "name": "Functions - Parameters",
+      "scope": "variable.parameter",
+      "foreground": "var(syntax_functions_parameters)",
+      "font_style": "italic",
+    },
+    {
+      "name": "Classes - Definitions",
+      "scope": "meta.class",
+      "foreground": "var(syntax_classes)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Classes - Inherits",
+      "scope": "meta.class entity.other.inherited-class",
+      "foreground": "var(syntax_classes)",
+      "font_style": "italic"
+    },
+    {
+      "name": "Classes - References",
+      "scope": "support.class -support.class.typing",
+      "foreground": "var(syntax_classes)",
+      "font_style": "underline",
+    },
+    {
+      "name": "Classes - Interfaces",
+      "scope": "support.class.interface",
+      "foreground": "var(syntax_classes_interfaces)",
+      "font_style": "bold italic",
+    },
+    {
+      "name": "Import paths",
+      "scope": "meta.statement.import -keyword",
+      "foreground": "var(syntax_import_path)",
+      "font_style": "italic"
+    },
+    {
+      "name": "Variables",
+      "scope": "((meta.path | meta.statement.exception.catch) & meta.generic-name) -meta.type",
+      "foreground": "var(syntax_variables)"
+    },
+    {
+      "name": "Variables - Imports",
+      "scope": "meta.statement.import & (meta.generic-name | variable)",
+      "foreground": "var(syntax_variables)",
+      "font_style": "italic",
+    },
+    {
+      "name": "Variables - Private",
+      "scope": "variable.other.private",
+      "foreground": "var(syntax_variables_private)"
+    },
+    {
+      "name": "Variables - Strong Private",
+      "scope": "variable.other.private.strong",
+      "foreground": "var(syntax_variables_private_strong)"
+    },
+    {
+      "name": "Literals - Numeric",
+      "scope": "constant.numeric",
+      "foreground": "var(syntax_literals_numeric)"
+    },
+    {
+      "name": "Literals - Strings - Double Quoted",
+      "scope": "string.quoted.double, string.quoted.double punctuation.definition.string",
+      "foreground": "var(syntax_literals_string_double_quote)"
+    },
+    {
+      "name": "Literals - Strings - Single Quoted",
+      "scope": "string.quoted.single, string.quoted.single punctuation.definition.string",
+      "foreground": "var(syntax_literals_string_single_quote)"
+    },
+    {
+      "name": "Literals - Strings - Regex / Special",
+      "scope": "string.regexp, string.regexp punctuation.definition.string",
+      "foreground": "var(syntax_literals_string_special)"
+    },
+    {
+      "name": "Interpolated Part of String",
+      "scope": "meta.interpolation",
+      "font_style": "stippled_underline"
+    },
+    {
+      "name": "Literals - Reserved",
+      "scope": "constant.language.boolean, constant.language.null, constant.language.nan, constant.language.infinity",
+      "foreground": "var(syntax_literals_reserved)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Constants",
+      "scope": "variable.other.constant -meta.statement.import",
+      "foreground": "var(syntax_constants)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Constants - private",
+      "scope": "variable.other.constant.private -meta.statement.import",
+      "foreground": "var(syntax_constants_private)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Constants - strong private",
+      "scope": "variable.other.constant.private.strong -meta.statement.import",
+      "foreground": "var(syntax_constants_private_strong)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Storage Modifiers",
+      "scope": "storage.modifier, storage.type",
+      "foreground": "var(syntax_storage_modifier)"
+    },
+    {
+      "name": "Punctuation",
+      "scope": "punctuation -constant.numeric -meta.annotation",
+      "foreground": "var(syntax_punctuation_default)",
+    },
+    {
+      "name": "Comments - Line",
+      "scope": "comment.line",
+      "foreground": "var(syntax_comment_line)",
+      "font_style": "italic"
+    },
+    {
+      "name": "Comments - Block",
+      "scope": "comment.block -comment.block.documentation",
+      "foreground": "var(syntax_comment_block)",
+      "font_style": "italic"
+    },
+    {
+      "name": "Comments - Doc - Summary",
+      "scope": "comment.block.documentation.summary",
+      "foreground": "color(var(syntax_comment_doc) l(+ 5%))",
+      "font_style": "bold"
+    },
+    {
+      "name": "Comments - Doc - Headers",
+      "scope": "keyword.other.documentation.section",
+      "foreground": "var(syntax_comment_doc_header)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Comments - Doc - Arg Names",
+      "scope": "variable.parameter.documentation",
+      "foreground": "var(syntax_functions_parameters)",
+      "font_style": "italic"
+    },
+    {
+      "name": "Comments - Doc - Arg Types",
+      "scope": "support.type.documentation",
+      "foreground": "var(syntax_types)",
+      "font_style": ""
+    },
+    {
+      "name": "Comments - Doc - Arg Descriptions",
+      "scope": "comment.block.documentation.description | comment.block.documentation",
+      "foreground": "var(syntax_comment_doc)",
+      "font_style": "italic",
+    },
+    {
+      "name": "Comments - TODO - Line",
+      "scope": "comment.line.todo",
+      "foreground": "var(syntax_comment_todo)",
+      "font_style": "bold italic underline"
+    },
+    {
+      "name": "Comments - TODO - Keyword",
+      "scope": "keyword.other.todo.comment",
+      "foreground": "var(syntax_comment_todo_keyword)",
+      "font_style": "bold underline"
+    },
+    {
+      "name": "Illegal",
+      "scope": "invalid",
+      "font_style": "underline bold",
+      "foreground": "var(_error)",
+    },
+    // FALLBACK
+    {
+      "name": "Fallback",
+      "scope": "source.python",
+      "foreground": "var(_meta_missed)",
+    }
+  ],
+}
