@@ -9,7 +9,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.2.3",
+  "version": "1.2.4",
   // --- Variables ---
   "variables": {
     // BASE - BG
@@ -42,6 +42,8 @@
     "baseGreen_fg2": "#69966b",
     "baseGold0": "#bf9e4a",
     "baseGold1": "#f5ca5f",
+    "baseGold2": "#9c813c",
+    "baseGold3": "#806931",
     "baseOrange_fg0": "#faa86b",
     "baseOrange_fg1": "#fa964b",
     "baseOrange_fg2": "#e69b63",
@@ -59,6 +61,8 @@
     "syntax_variables_private": "var(baseGreen_fg1)",
     "syntax_variables_private_strong": "var(baseGreen_fg2)",
     "syntax_constants": "var(baseGold0)",
+    "syntax_constants_private": "var(baseGold2)",
+    "syntax_constants_private_strong": "var(baseGold3)",
     "syntax_storage_modifier": "var(baseGold1)",
     "syntax_functions_definition": "var(baseCyan0)",
     "syntax_functions_call": "var(baseCyan1)",
@@ -255,6 +259,18 @@
       "name": "Constants",
       "scope": "variable.other.constant -meta.statement.import",
       "foreground": "var(syntax_constants)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Constants - private",
+      "scope": "variable.other.constant.private -meta.statement.import",
+      "foreground": "var(syntax_constants_private)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Constants - strong private",
+      "scope": "variable.other.constant.private.strong -meta.statement.import",
+      "foreground": "var(syntax_constants_private_strong)",
       "font_style": "bold"
     },
     {
