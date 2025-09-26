@@ -1,0 +1,12 @@
+// These settings override both User and Default settings for the Python syntax
+{
+	"rulers": [
+		80,
+		100
+	],
+	"ruler_style": "dotted",
+	// Indentation
+	"translate_tabs_to_spaces": true,
+	"tab_size": 4,
+	"detect_indentation": false
+}
