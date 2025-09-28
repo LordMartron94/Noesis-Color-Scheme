@@ -147,7 +147,7 @@
     },
     {
       "name": "Typing",
-      "scope": "support.class.typing, support.type, meta.type",
+      "scope": "support.class.typing, support.type, meta.type, (meta.block storage.type)",
       "foreground": "var(syntax_types)",
     },
     {
@@ -297,7 +297,7 @@
     },
     {
       "name": "Storage Modifiers",
-      "scope": "(storage.modifier, storage.type, constant.character.escape) -meta.function",
+      "scope": "(storage.modifier, storage.type, constant.character.escape) -meta.function -meta.type -meta.block",
       "foreground": "var(syntax_storage_modifier)"
     },
     {
