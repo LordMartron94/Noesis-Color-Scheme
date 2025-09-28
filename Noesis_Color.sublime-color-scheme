@@ -9,7 +9,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.2.5",
+  "version": "1.3.0",
   // --- Variables ---
   "variables": {
     // BASE - BG
@@ -35,8 +35,10 @@
     "baseBlue1": "#8ecefa",
     "baseBlue2": "#5a9bfa",
     "baseBlue3": "#4ebcd4",
+    "baseBlue4": "#497dc9",
     "basePurple0": "#9d73fa",
     "basePurple1": "#7343de",
+    "baseViolet0": "#7868e3",
     "baseGreen_fg0": "#8fcc91",
     "baseGreen_fg1": "#81b883",
     "baseGreen_fg2": "#69966b",
@@ -55,6 +57,7 @@
     "background_alt2": "var(base2)",
     "background_accent": "var(base3)",
     // SYNTAX
+    "syntax_external_link": "var(baseViolet0)", // Note: Not every language has this (it comes from LSP)
     "syntax_types": "var(baseBlue0)",
     "syntax_keyword": "var(basePurple0)",
     "syntax_variables": "var(baseGreen_fg0)",
@@ -70,6 +73,7 @@
     "syntax_functions_dunder_call": "var(baseCyan3)",
     "syntax_functions_parameters": "var(baseTeal0)",
     "syntax_functions_decorators": "var(baseTeal0)",
+    "syntax_namespaces": "var(baseBlue4)",
     "syntax_classes": "var(baseBlue2)",
     "syntax_classes_interfaces": "var(baseBlue3)",
     "syntax_literals_numeric": "var(baseBlue1)",
@@ -120,10 +124,15 @@
     "line_diff_modified": "var(_git_modified)",
     "line_diff_deleted": "var(_git_deleted)",
     "popup_css": "html, body { background-color: #171a2b; color: #8f9ab5; } ",
-    "phantom_css": "span.nums { color: #5a9bfa; } span.context { color: #8f9ab5; } div.scope { color: #8f9ab5; }"
+    "phantom_css": "span.nums { color: #5a9bfa; } span.context { color: #8f9ab5; } div.scope { color: #8f9ab5; }",
   },
   // --- Rules ---
   "rules": [
+    {
+      "name": "LSP Document Links",
+      "scope": "markup.underline.link.lsp, markup.underline.link",
+      "foreground": "var(syntax_external_link)"
+    },
     {
       "name": "Keywords and other Built-In/Reserved stuff",
       "scope": "(keyword, punctuation.section.block, punctuation.section.function, punctuation.section.class, variable.language, constant.language, punctuation.accessor) -keyword.other.todo.comment",
@@ -152,7 +161,7 @@
     },
     {
       "name": "Function Calls",
-      "scope": "meta.function-call",
+      "scope": "meta.function-call, variable.function",
       "foreground": "var(syntax_functions_call)",
     },
     {
@@ -172,6 +181,12 @@
       "scope": "variable.parameter",
       "foreground": "var(syntax_functions_parameters)",
       "font_style": "italic",
+    },
+    {
+      "name": "Namepspaces - Definitions",
+      "scope": "meta.namespace",
+      "foreground": "var(syntax_namespaces)",
+      "font_style": "bold"
     },
     {
       "name": "Classes - Definitions",
@@ -205,7 +220,7 @@
     },
     {
       "name": "Variables",
-      "scope": "((meta.path | meta.statement.exception.catch) & meta.generic-name) -meta.type",
+      "scope": "((meta.path | meta.statement.exception.catch) & meta.generic-name) -meta.type, variable.other",
       "foreground": "var(syntax_variables)"
     },
     {
