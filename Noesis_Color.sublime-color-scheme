@@ -31,6 +31,7 @@
     "baseCyan2": "#1a6a99",
     "baseCyan3": "#1f7fb5",
     "baseTeal0": "#4eb5a8",
+    "baseTeal1": "#39857b", // In between Blue and Green, thus structural mutable variables.
     "baseBlue0": "#8e9afa",
     "baseBlue1": "#8ecefa",
     "baseBlue2": "#5a9bfa",
@@ -63,6 +64,7 @@
     "syntax_variables": "var(baseGreen_fg0)",
     "syntax_variables_private": "var(baseGreen_fg1)",
     "syntax_variables_private_strong": "var(baseGreen_fg2)",
+    "syntax_variables_member": "var(baseTeal1)",
     "syntax_constants": "var(baseGold0)",
     "syntax_constants_private": "var(baseGold2)",
     "syntax_constants_private_strong": "var(baseGold3)",
@@ -183,14 +185,14 @@
       "font_style": "italic",
     },
     {
-      "name": "Namepspaces - Definitions",
+      "name": "Namespaces - Definitions",
       "scope": "meta.namespace",
       "foreground": "var(syntax_namespaces)",
       "font_style": "bold"
     },
     {
       "name": "Classes - Definitions",
-      "scope": "meta.class",
+      "scope": "meta.class, entity.name.type",
       "foreground": "var(syntax_classes)",
       "font_style": "bold"
     },
@@ -238,6 +240,11 @@
       "name": "Variables - Strong Private",
       "scope": "variable.other.private.strong",
       "foreground": "var(syntax_variables_private_strong)"
+    },
+    {
+      "name": "Variables - Members",
+      "scope": "variable.other.member",
+      "foreground": "var(syntax_variables_member)"
     },
     {
       "name": "Literals - Numeric",
