@@ -204,7 +204,7 @@
     },
     {
       "name": "Classes - References",
-      "scope": "support.class -support.class.typing",
+      "scope": "(support.class -support.class.typing), (meta.function storage.type -support.type)",
       "foreground": "var(syntax_classes)",
       "font_style": "underline",
     },
@@ -297,7 +297,7 @@
     },
     {
       "name": "Storage Modifiers",
-      "scope": "storage.modifier, storage.type, constant.character.escape",
+      "scope": "(storage.modifier, storage.type, constant.character.escape) -meta.function",
       "foreground": "var(syntax_storage_modifier)"
     },
     {
