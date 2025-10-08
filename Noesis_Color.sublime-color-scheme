@@ -263,7 +263,7 @@
     },
     {
       "name": "Literals - Strings - Regex / Special",
-      "scope": "string.regexp, string.regexp punctuation.definition.string",
+      "scope": "string.regexp, string.regexp punctuation.definition.string, string.quoted.backtick",
       "foreground": "var(syntax_literals_string_special)"
     },
     {
@@ -297,7 +297,7 @@
     },
     {
       "name": "Storage Modifiers",
-      "scope": "(storage.modifier, storage.type, constant.character.escape) -meta.function -meta.type -meta.block",
+      "scope": "(storage.modifier, storage.type, constant.character.escape) -meta.function -meta.type -meta.block, constant.other.placeholder",
       "foreground": "var(syntax_storage_modifier)"
     },
     {
