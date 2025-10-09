@@ -9,7 +9,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.3.1",
+  "version": "1.3.2",
   // --- Variables ---
   "variables": {
     // BASE - BG
@@ -52,6 +52,7 @@
     "baseOrange_fg2": "#e69b63",
     "baseRed_fg0": "#f52528",
     "baseWhite0": "#ffffff",
+    "baseCyanSpecial0": "#4e78ea", // Used for builtin functions
     // BG
     "background_default": "var(base0)",
     "background_alt": "var(base1)",
@@ -75,6 +76,7 @@
     "syntax_functions_dunder_call": "var(baseCyan3)",
     "syntax_functions_parameters": "var(baseTeal0)",
     "syntax_functions_decorators": "var(baseTeal0)",
+    "syntax_functions_builtin": "var(baseCyanSpecial0)",
     "syntax_namespaces": "var(baseBlue4)",
     "syntax_classes": "var(baseBlue2)",
     "syntax_classes_interfaces": "var(baseBlue3)",
@@ -165,6 +167,12 @@
       "name": "Function Calls",
       "scope": "meta.function-call, variable.function",
       "foreground": "var(syntax_functions_call)",
+    },
+    {
+      "name": "Functions - Built-In",
+      "scope": "support.function",
+      "foreground": "var(syntax_functions_builtin)",
+      "font_style": "underline",
     },
     {
       "name": "Function Decorators",
@@ -279,7 +287,7 @@
     },
     {
       "name": "Literals - Reserved - Special",
-      "scope": "constant.language.builtin",
+      "scope": "constant.language.builtin, support.constant",
       "foreground": "var(syntax_literals_reserved)",
       "font_style": "bold underline"
     },
