@@ -9,7 +9,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.3.3",
+  "version": "1.3.4",
   // --- Variables ---
   "variables": {
     // BASE - BG
@@ -230,7 +230,7 @@
     },
     {
       "name": "Variables",
-      "scope": "((meta.path | meta.statement.exception.catch) & meta.generic-name) -meta.type, variable.other",
+      "scope": "((meta.path | meta.statement.exception.catch) & meta.generic-name) -meta.type, variable.other, entity.other.custom-property",
       "foreground": "var(syntax_variables)"
     },
     {
