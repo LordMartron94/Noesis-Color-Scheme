@@ -9,7 +9,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.3.2",
+  "version": "1.3.3",
   // --- Variables ---
   "variables": {
     // BASE - BG
@@ -292,8 +292,41 @@
       "font_style": "bold underline"
     },
     {
+      "name": "CSS Selectors",
+      "scope": "meta.selector.css",
+      "foreground": "var(syntax_classes)",
+      "font_style": "bold"
+    },
+    {
+      "name": "CSS Tag Selectors",
+      "scope": "entity.name.tag.css",
+      "foreground": "var(syntax_types)"
+    },
+    {
+      "name": "CSS Class Selectors",
+      "scope": "entity.other.attribute-name.class.css",
+      "foreground": "var(syntax_variables)"
+    },
+    {
+      "name": "CSS ID Selectors",
+      "scope": "entity.other.attribute-name.id.css",
+      "foreground": "var(syntax_constants)",
+      "font_style": "bold"
+    },
+    {
+      "name": "CSS Pseudo-classes & Pseudo-elements",
+      "scope": "entity.other.pseudo-class.css, entity.other.pseudo-element.css",
+      "foreground": "var(syntax_functions_call)",
+      "font_style": "italic"
+    },
+    {
+      "name": "CSS Combinators",
+      "scope": "keyword.operator.combinator.css",
+      "foreground": "var(syntax_punctuation_default)"
+    },
+    {
       "name": "Constants",
-      "scope": "variable.other.constant -meta.statement.import -meta.type -meta.typing",
+      "scope": "(constant.other, variable.other.constant) -meta.statement.import -meta.type -meta.typing",
       "foreground": "var(syntax_constants)",
       "font_style": "bold"
     },
@@ -382,7 +415,7 @@
     // FALLBACK
     {
       "name": "Fallback",
-      "scope": "source.python",
+      "scope": "source",
       "foreground": "var(_meta_missed)",
     }
   ],
