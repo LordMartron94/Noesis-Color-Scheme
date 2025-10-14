@@ -9,7 +9,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.3.4",
+  "version": "1.3.5",
   // --- Variables ---
   "variables": {
     // BASE - BG
@@ -315,7 +315,7 @@
     },
     {
       "name": "CSS Pseudo-classes & Pseudo-elements",
-      "scope": "entity.other.pseudo-class.css, entity.other.pseudo-element.css",
+      "scope": "entity.other.pseudo-class.css, entity.other.pseudo-element.css, entity.other.animation-name.css",
       "foreground": "var(syntax_functions_call)",
       "font_style": "italic"
     },
