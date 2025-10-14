@@ -9,7 +9,7 @@
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.3.5",
+  "version": "1.3.6",
   // --- Variables ---
   "variables": {
     // BASE - BG
@@ -230,7 +230,7 @@
     },
     {
       "name": "Variables",
-      "scope": "((meta.path | meta.statement.exception.catch) & meta.generic-name) -meta.type, variable.other, entity.other.custom-property",
+      "scope": "((meta.path | meta.statement.exception.catch) & meta.generic-name) -meta.type, variable.other, entity.other.custom-property, variable",
       "foreground": "var(syntax_variables)"
     },
     {
@@ -261,7 +261,7 @@
     },
     {
       "name": "Literals - Strings - Double Quoted",
-      "scope": "(string.quoted.double, string.quoted.double punctuation.definition.string) -meta.type -meta.typing",
+      "scope": "(string.quoted.double, string.quoted.double punctuation.definition.string) -meta.type -meta.typing, string",
       "foreground": "var(syntax_literals_string_double_quote)"
     },
     {
