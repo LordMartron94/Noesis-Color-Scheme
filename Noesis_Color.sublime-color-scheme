@@ -261,7 +261,7 @@
     },
     {
       "name": "Literals - Strings - Double Quoted",
-      "scope": "(string.quoted.double, string.quoted.double punctuation.definition.string) -meta.type -meta.typing, string",
+      "scope": "(string, string.quoted.double, string.quoted.double punctuation.definition.string) -meta.type -meta.typing",
       "foreground": "var(syntax_literals_string_double_quote)"
     },
     {
