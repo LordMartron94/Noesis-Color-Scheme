@@ -82,8 +82,15 @@
     "syntax_mapping_keys": "var(base_sapphire)",
     "syntax_reference": "var(base_cyan_muted)",
     "syntax_constant": "var(base_orange)",
-    "syntax_attribute": "var(base_sapphire)",
+    "syntax_attribute": "var(base_neutral_bright)",
     "syntax_selector": "var(base_cyan_muted)",
+    "syntax_declaration": "var(base_cyan)",
+    "syntax_namespace": "var(base_neutral_bright)",
+    "syntax_primitive_type": "var(base_orange)",
+    "syntax_modifier": "var(base_neutral_bright)",
+    "syntax_module_ref": "var(base_neutral_bright)",
+    "syntax_property": "var(base_fg_main)",
+    "syntax_block_bg": "var(base_bg_1)",
     // Specific Philosophy Mappings
     "syntax_doc": "var(base_neutral_dim)",
     "syntax_comment": "var(base_alert)",
@@ -113,6 +120,8 @@
     "selection": "var(env_selection)",
     "selection_border": "var(base_neutral_bright)",
     "selection_border_width": "2",
+    // Minimap
+    "minimap_border": "var(base_neutral_bright)",
     // Gutter
     "line_highlight": "var(env_highlight)",
     "gutter": "var(env_gutter)",
@@ -132,10 +141,17 @@
     // TIER 1: CORE LOGIC & ARCHITECTURE
     // ==========================================
     {
-      "name": "Control Flow & Keywords",
-      "scope": "keyword.control, keyword.other, storage.type, storage.modifier",
+      "name": "Control Flow (The Brain)",
+      "scope": "keyword.control, keyword.other - (keyword.declaration | storage.type | storage.modifier)",
       "font_style": "italic",
       "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "Engine Directives (Compile-Time State)",
+      "scope": "variable.language.compiler, punctuation.definition.variable.compiler, variable.language.compiler.directive",
+      "font_style": "italic bold underline",
+      "foreground": "var(syntax_keyword)",
+      "background": "var(syntax_block_bg)",
     },
     {
       "name": "Logical & Comparison Operators (The Gates)",
@@ -156,30 +172,102 @@
       "foreground": "var(syntax_operator_math)"
     },
     {
-      "name": "Types and Classes",
-      "scope": "entity.name.type, entity.name.class, support.type, support.class",
+      "name": "Architecture Declarations (The Blueprints)",
+      "scope": "keyword.other.version, keyword.declaration.module, storage.type.function, keyword.declaration.function, storage.type.class, keyword.declaration.class, storage.type.struct, keyword.declaration.struct, storage.type.enum, keyword.declaration.enum, storage.type.interface, keyword.declaration.interface, storage.type.type, keyword.declaration.type, storage.type.namespace, keyword.declaration.namespace, keyword.declaration.map",
       "font_style": "italic",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "Inheritance & Relational Modifiers",
+      "scope": "storage.modifier.extends, storage.modifier.implements, keyword.declaration.implements, keyword.declaration.extends",
+      "font_style": "italic",
+      "foreground": "var(syntax_modifier)"
+    },
+    {
+      "name": "Event Hooks (onShow, onHide)",
+      "scope": "keyword.control.event",
+      "font_style": "bold",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "State Declarations (Memory Allocation)",
+      "scope": "keyword.declaration.var, keyword.declaration.const, storage.type.variable, storage.type.constant",
+      "font_style": "italic",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "Data Modifiers (The Traits)",
+      "scope": "storage.modifier, storage.type.modifier",
+      "font_style": "italic",
+      "foreground": "var(syntax_modifier)"
+    },
+    {
+      "name": "User-Defined Types, Classes, and Modules",
+      "scope": "entity.name.type, entity.name.class, entity.name.module, support.class, storage.type, variable.parameter.type, variable.other.type",
+      "font_style": "bold",
       "foreground": "var(syntax_entity)"
     },
     {
-      "name": "Functions",
+      "name": "Inherited Classes & Interfaces (Pointers)",
+      "scope": "entity.other.inherited-class",
+      "font_style": "italic",
+      "foreground": "var(syntax_reference)"
+    },
+    {
+      "name": "Namespaces",
+      "scope": "entity.name.namespace",
+      "foreground": "var(syntax_namespace)"
+    },
+    {
+      "name": "Functions (The Actions)",
       "scope": "entity.name.function, support.function, variable.function",
       "font_style": "bold",
       "foreground": "var(syntax_function)"
+    },
+    {
+      "name": "Module and Package References",
+      "scope": "support.other.module",
+      "font_style": "italic",
+      "foreground": "var(syntax_module_ref)"
     },
     // ==========================================
     // TIER 2: DATA & STATE
     // ==========================================
     {
-      "name": "Variable Declaration",
-      "scope": "entity.name.variable, meta.definition.variable variable",
+      "name": "Built-In Primitive Types (The Raw Material)",
+      "scope": "support.type, support.type.builtin, support.type.primitive",
+      "font_style": "italic",
+      "foreground": "var(syntax_primitive_type)"
+    },
+    {
+      "name": "Variable Declaration (The Birth of State)",
+      "scope": "entity.name.variable, meta.definition.variable, variable.other.readwrite.declaration, variable.other.declaration, variable.other.assignment",
+      "font_style": "bold",
       "foreground": "var(syntax_variable)"
     },
     {
-      "name": "Variable Reference",
-      "scope": "variable.other, variable.parameter",
+      "name": "Variable Parameters (Injected State)",
+      "scope": "variable.parameter",
+      "font_style": "italic",
+      "foreground": "var(syntax_variable)"
+    },
+    {
+      "name": "Variable Reference (Pointers)",
+      "scope": "variable.other, support.class.color-set",
       "font_style": "italic",
       "foreground": "var(syntax_reference)"
+    },
+    {
+      "name": "Properties and Members (Object State)",
+      "scope": "variable.other.member, variable.other.property, meta.property.object",
+      "foreground": "var(syntax_property)",
+      "font_style": "",
+    },
+    {
+      "name": "Built-In Language Schema Keys (DSL Properties)",
+      "scope": "support.type.property-name",
+      "font_style": "",
+      "foreground": "var(syntax_attribute)"
     },
     {
       "name": "Strings",
@@ -188,18 +276,24 @@
     },
     {
       "name": "Constants, Colors, and Numbers",
-      "scope": "constant, support.constant.color, constant.other.color, constant.numeric",
+      "scope": "constant, support.constant, constant.numeric",
       "font_style": "bold",
       "foreground": "var(syntax_constant)"
     },
     {
-      "name": "Built-In Constants",
+      "name": "Constant Properties (Object State Lookups)",
+      "scope": "variable.other.constant.property, variable.other.constant",
+      "font_style": "italic bold",
+      "foreground": "var(syntax_property)"
+    },
+    {
+      "name": "Built-In Constants & Enums",
       "scope": "constant.language, support.constant.font-style",
       "font_style": "bold underline",
       "foreground": "var(syntax_constant)"
     },
     // ==========================================
-    // TIER 3: STRUCTURAL NOISE (Background Layer)
+    // TIER 3: STRUCTURAL NOISE
     // ==========================================
     {
       "name": "Punctuation",
@@ -222,8 +316,8 @@
     // TIER 4: SPECIFIC LANGUAGE OVERRIDES
     // ==========================================
     {
-      "name": "JSON/Dict Keys",
-      "scope": "meta.mapping.key, (keyword.other.rule.sublime-color-scheme, keyword.other.main.sublime-color-scheme, keyword.other.variables.sublime-color-scheme)",
+      "name": "JSON/Dict Keys and Schema Keywords",
+      "scope": "meta.mapping.key, source.json.sublime.color-scheme keyword.other, keyword.other.rule.sublime-color-scheme, keyword.other.main.sublime-color-scheme, keyword.other.variables.sublime-color-scheme",
       "foreground": "var(syntax_mapping_keys)",
       "font_style": ""
     },
@@ -244,21 +338,132 @@
       "foreground": "var(syntax_attribute)"
     },
     {
-      "name": "CSS Properties (Overrides generic support.type)",
-      "scope": "support.type.property-name, meta.property-name",
+      "name": "Properties, Attributes, and Schema Keys",
+      "scope": "meta.property.name, entity.other.attribute-name",
+      "foreground": "var(syntax_attribute)"
+    },
+    {
+      "name": "Sublime Syntax: Scope Declarations (Overrides storage.type)",
+      "scope": "storage.type.scope-name, storage.modifier.meta-scope, storage.type.meta-scope, storage.type.display-name, storage.type.version, source.yaml.sublime.syntax entity.name.tag",
+      "font_style": "",
       "foreground": "var(syntax_attribute)"
     },
     {
       "name": "Scope Selectors (Overrides Strings)",
-      "scope": "string.unquoted.scope-segment",
+      "scope": "string.unquoted.scope-segment, meta.scope.sublime-syntax string",
       "font_style": "italic",
       "foreground": "var(syntax_selector)"
+    },
+    {
+      "name": "Regular Expressions (Literal Base)",
+      "scope": "string.regexp, meta.literal.regexp",
+      "foreground": "var(syntax_string)"
+    },
+    {
+      "name": "Regular Expressions: Escapes (Primitives)",
+      "scope": "constant.character.escape",
+      "font_style": "bold",
+      "foreground": "var(syntax_constant)"
+    },
+    {
+      "name": "Regular Expressions: Assertions (Logic Gates)",
+      "scope": "constant.other.assertion",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_logic)"
+    },
+    {
+      "name": "Go: Struct Tags / Annotations",
+      "scope": "variable.annotation, meta.annotation.identifier, meta.annotation",
+      "font_style": "italic",
+      "foreground": "var(syntax_attribute)"
+    },
+    // ==========================================
+    // LANGSPEC: CORE ENGINE & BLOCKS
+    // ==========================================
+    {
+      "name": "LangSpec: Elevated Block Backgrounds",
+      "scope": "meta.header.body.lspec, meta.meta-section.body.lspec",
+      "background": "var(syntax_block_bg)"
+    },
+    {
+      "name": "LangSpec: Language Identity (The God Entity)",
+      "scope": "entity.name.language.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_entity)"
+    },
+    {
+      "name": "LangSpec: Section Declarations (The Blueprints)",
+      "scope": "keyword.pragma.lspec, keyword.tool.lspec, keyword.lspec.lspec, keyword.declaration.pattern.lspec, keyword.declaration.lex.lspec, keyword.declaration.parse.lspec, keyword.declaration.pratt.lspec, keyword.declaration.ignore.lspec",
+      "font_style": "bold italic",
+      "foreground": "var(syntax_declaration)"
+    },
+    {
+      "name": "LangSpec: Parse Rules (Function Declarations)",
+      "scope": "entity.name.function.parser-expression.lspec, entity.name.function.parser-rule.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_function)"
+    },
+    {
+      "name": "LangSpec: User-Defined Tokens & Roles (The Birth)",
+      "scope": "entity.name.pattern.constant.lspec, entity.name.token.lspec, entity.name.token-role.lspec, entity.name.type.parser-node.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_entity)"
+    },
+    {
+      "name": "LangSpec: References & Calls (The Life/Pointers)",
+      "scope": "constant.language.pattern-reference.lspec, constant.language.token-reference.lspec, constant.language.symbol-reference.lspec, constant.language.token-role-reference.lspec, entity.name.function.expression-reference.lspec",
+      "font_style": "italic",
+      "foreground": "var(syntax_reference)"
+    },
+    {
+      "name": "LangSpec: Expression References",
+      "scope": "entity.name.function.expression-reference.lspec",
+      "font_style": "italic underline",
+    },
+    {
+      "name": "LangSpec: AST Modifiers (The Traits)",
+      "scope": "keyword.operator.transparent.lspec, keyword.operator.virtual.lspec, keyword.operator.implicit.lspec",
+      "font_style": "italic",
+      "foreground": "var(syntax_modifier)"
+    },
+    {
+      "name": "LangSpec: Parser Control Flow (The Engine)",
+      "scope": "keyword.operator.nest.lspec, keyword.operator.sync.lspec, keyword.operator.predict.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "LangSpec: Logical OR (The Gates)",
+      "scope": "punctuation.pipe.lspec -meta.header, keyword.operator.alternation.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_logic)"
+    },
+    {
+      "name": "LangSpec: Quantifiers (The Mutations)",
+      "scope": "keyword.operator.optional.lspec, keyword.operator.star.lspec, keyword.operator.plus.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_math)"
+    },
+    {
+      "name": "LangSpec: Parse Groups (Execution Boundaries)",
+      "scope": "meta.parse-group.body.lspec punctuation.section.parens",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_logic)"
+    },
+    // ==========================================
+    // RULEFORGE
+    // ==========================================
+    {
+      "name": "Game State Properties (External/Injected)",
+      "scope": "variable.other.property.game.rf, variable.other.property.game",
+      "font_style": "italic",
+      "foreground": "var(syntax_property)"
     },
     // ==========================================
     // GIT GUTTER & TELEMETRY
     // ==========================================
     {
-      "name": "GitGutter: Inserted",
+      "name": "GitGutter: Tracking Status",
       "scope": "markup.inserted.git_gutter",
       "foreground": "var(git_added)"
     },
@@ -286,7 +491,7 @@
       "name": "GitGutter: Inline Annotation (Blame)",
       "scope": "comment.line.annotation.git_gutter",
       "font_style": "italic",
-      "foreground": "var(git_annotation_fg)" // Maps to #6B7A99 (base_neutral_mid)
+      "foreground": "var(git_annotation_fg)"
     },
     // ==========================================
     // TIER 5: SYSTEM ALERTS & FALLBACKS
