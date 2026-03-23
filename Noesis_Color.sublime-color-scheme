@@ -132,7 +132,7 @@
     // ==========================================
     {
       "name": "Control Flow (The Brain)",
-      "scope": "keyword.control, keyword.other - (keyword.declaration | storage.type | storage.modifier)",
+      "scope": "keyword.control, keyword.other - (keyword.declaration | storage.type | storage.modifier), keyword.gomod",
       "font_style": "italic",
       "foreground": "var(syntax_keyword)"
     },
@@ -266,7 +266,7 @@
     },
     {
       "name": "Constants, Colors, and Numbers",
-      "scope": "constant, support.constant, constant.numeric",
+      "scope": "constant, support.constant, constant.numeric, variable.gomod",
       "font_style": "bold",
       "foreground": "var(syntax_constant)"
     },
