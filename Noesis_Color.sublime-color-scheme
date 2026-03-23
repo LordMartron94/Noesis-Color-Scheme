@@ -9,17 +9,6 @@
 // 2. Semantic Mappings: Functional assignments (e.g., 'syntax_keyword' = 'base_purple').
 // 3. Globals & Rules: UI and syntax scopes consuming only Semantic variables.
 //
-// SYNTAX USAGE GUIDE:
-// - syntax_doc: Deeply dimmed. Used for public API documentation that shouldn't distract.
-// - syntax_comment: Piercing amber. Used strictly as an alert/warning for complex logic.
-// - syntax_keyword: Neon purple. The control flow and bones of the logic.
-// - syntax_entity: Electric cyan. Classes, types, and god-level constructs.
-// - syntax_function: Plasma green. Executable actions and methods.
-// - syntax_variable: Stark white/light silver. The standard data being manipulated.
-// - syntax_string: Pale yellow. Literal data payloads.
-// - syntax_operator_math: Crimson/Pink. Mathematical and assignment mutations.
-// - syntax_operator_logic: Neon Magenta. Truth evaluation and control flow gates.
-//
 // END DOCUMENTATION
 {
   // --- Metadata ---
@@ -45,6 +34,7 @@
     "base_white": "#FFFFFF", // High emphasis
     // The Power (Hues - high luminosity for dark mode)
     "base_cyan": "#00E5FF", // Tech, Types, Classes
+    "base_mint": "#00FFAA", // Built-in primitives, foundational architecture
     "base_plasma": "#39FF14", // Functions, Execution
     "base_purple": "#B5179E", // Control flow, Keywords
     "base_magenta": "#D500FF", // Truth evaluation, Logic gates
@@ -86,7 +76,7 @@
     "syntax_selector": "var(base_cyan_muted)",
     "syntax_declaration": "var(base_cyan)",
     "syntax_namespace": "var(base_neutral_bright)",
-    "syntax_primitive_type": "var(base_orange)",
+    "syntax_primitive_type": "var(base_mint)",
     "syntax_modifier": "var(base_neutral_bright)",
     "syntax_module_ref": "var(base_neutral_bright)",
     "syntax_property": "var(base_fg_main)",
