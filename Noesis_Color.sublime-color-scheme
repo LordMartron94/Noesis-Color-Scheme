@@ -163,7 +163,7 @@
     },
     {
       "name": "Architecture Declarations (The Blueprints)",
-      "scope": "keyword.other.version, keyword.declaration.module, storage.type.function, keyword.declaration.function, storage.type.class, keyword.declaration.class, storage.type.struct, keyword.declaration.struct, storage.type.enum, keyword.declaration.enum, storage.type.interface, keyword.declaration.interface, storage.type.type, keyword.declaration.type, storage.type.namespace, keyword.declaration.namespace, keyword.declaration.map",
+      "scope": "keyword.other.version, keyword.declaration.module, storage.type.function, keyword.declaration.function, storage.type.class, keyword.declaration.class, storage.type.struct, keyword.declaration.struct, storage.type.enum, keyword.declaration.enum, storage.type.interface, keyword.declaration.interface, storage.type.type, keyword.declaration.type, storage.type.namespace, keyword.declaration.namespace, keyword.declaration.map, keyword.declaration.go",
       "font_style": "italic",
       "foreground": "var(syntax_keyword)"
     },
@@ -482,6 +482,51 @@
       "scope": "comment.line.annotation.git_gutter",
       "font_style": "italic",
       "foreground": "var(git_annotation_fg)"
+    },
+    // ==========================================
+    // GO MOD: DEPENDENCY ARCHITECTURE
+    // ==========================================
+    {
+      "name": "Go Mod: Module Paths (The Network Data)",
+      "scope": "string.unquoted.module-path.gomod, entity.name.reference.module.gomod, entity.name.reference.module.original.gomod, entity.name.reference.module.target.gomod, entity.name.reference.toolchain.gomod, entity.name.reference.tool.gomod",
+      "font_style": "",
+      "foreground": "var(syntax_string)"
+    },
+    {
+      "name": "Go Mod: Versions (The Immutable Milestones)",
+      "scope": "constant.numeric.version.gomod, constant.numeric.version.low.gomod, constant.numeric.version.high.gomod",
+      "font_style": "bold",
+      "foreground": "var(syntax_constant)"
+    },
+    {
+      "name": "Go Mod: Block Keywords (The Control Flow)",
+      "scope": "keyword.control.require.gomod, keyword.control.replace.gomod, keyword.control.exclude.gomod, keyword.control.retract.gomod",
+      "font_style": "italic",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "Go Mod: Toolchain & Tool Directives (The Primitives)",
+      "scope": "keyword.declaration.toolchain.gomod, keyword.declaration.tool.gomod, keyword.declaration.godebug.gomod",
+      "font_style": "italic",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "Go Mod: Arrow Operator (The Mutation)",
+      "scope": "keyword.operator.arrow.gomod",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_math)"
+    },
+    {
+      "name": "Go Mod: Godebug Key/Values (The Configuration)",
+      "scope": "meta.reference.godebug.gomod support.type.property-name.gomod",
+      "font_style": "italic",
+      "foreground": "var(syntax_attribute)"
+    },
+    {
+      "name": "Go Mod: Values",
+      "scope": "constant.language.value.gomod",
+      "font_style": "bold",
+      "foreground": "var(syntax_constant)"
     },
     // ==========================================
     // TIER 5: SYSTEM ALERTS & FALLBACKS
