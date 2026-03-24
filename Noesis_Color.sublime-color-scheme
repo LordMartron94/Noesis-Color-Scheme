@@ -1,353 +1,546 @@
 // DOCUMENTATION
-// V1.1 Created by Mr. Hoorn on Monday 24 September 2025
+// V2.0 
 //
 // Color scheme in dark mode intended for highly productive programming.
-// Should evoke feelings of power, control, highly advanced tech, and godliness.
-// 
+// Theme: Power, control, highly advanced tech, and godliness.
+//
+// ARCHITECTURE:
+// 1. Base Palette: Raw hex values defining the absolute colors.
+// 2. Semantic Mappings: Functional assignments (e.g., 'syntax_keyword' = 'base_purple').
+// 3. Globals & Rules: UI and syntax scopes consuming only Semantic variables.
+//
 // END DOCUMENTATION
 {
   // --- Metadata ---
   "name": "Noesis Color Theme",
   "author": "Mr. Hoorn",
-  "version": "1.2.5",
+  "version": "2.0.0",
   // --- Variables ---
   "variables": {
-    // BASE - BG
-    "base0": "#171a2b",
-    "base1": "#1e2238",
-    "base2": "#282d4a",
-    "base3": "#373d5e",
-    // Base - FG - Neutrals
-    "baseNeutral0": "#5b6273", // Quite dimmed
-    "baseNeutral1": "#8f9ab5", // More obvious
-    // HUES - BG
-    "baseGreen0": "#689669",
-    "baseOrange0": "#C76D35",
-    "baseRed0": "#a63848",
-    // HUES - FG
-    "basePink0": "#faafe6",
-    "baseCyan0": "#2290cc",
-    "baseCyan1": "#29adf5",
-    "baseCyan2": "#1a6a99",
-    "baseCyan3": "#1f7fb5",
-    "baseTeal0": "#4eb5a8",
-    "baseBlue0": "#8e9afa",
-    "baseBlue1": "#8ecefa",
-    "baseBlue2": "#5a9bfa",
-    "baseBlue3": "#4ebcd4",
-    "basePurple0": "#9d73fa",
-    "basePurple1": "#7343de",
-    "baseGreen_fg0": "#8fcc91",
-    "baseGreen_fg1": "#81b883",
-    "baseGreen_fg2": "#69966b",
-    "baseGold0": "#bf9e4a",
-    "baseGold1": "#f5ca5f",
-    "baseGold2": "#9c813c",
-    "baseGold3": "#806931",
-    "baseOrange_fg0": "#faa86b",
-    "baseOrange_fg1": "#fa964b",
-    "baseOrange_fg2": "#e69b63",
-    "baseRed_fg0": "#f52528",
-    "baseWhite0": "#ffffff",
-    // BG
-    "background_default": "var(base0)",
-    "background_alt": "var(base1)",
-    "background_alt2": "var(base2)",
-    "background_accent": "var(base3)",
-    // SYNTAX
-    "syntax_types": "var(baseBlue0)",
-    "syntax_keyword": "var(basePurple0)",
-    "syntax_variables": "var(baseGreen_fg0)",
-    "syntax_variables_private": "var(baseGreen_fg1)",
-    "syntax_variables_private_strong": "var(baseGreen_fg2)",
-    "syntax_constants": "var(baseGold0)",
-    "syntax_constants_private": "var(baseGold2)",
-    "syntax_constants_private_strong": "var(baseGold3)",
-    "syntax_storage_modifier": "var(baseGold1)",
-    "syntax_functions_definition": "var(baseCyan0)",
-    "syntax_functions_call": "var(baseCyan1)",
-    "syntax_functions_dunder_def": "var(baseCyan2)",
-    "syntax_functions_dunder_call": "var(baseCyan3)",
-    "syntax_functions_parameters": "var(baseTeal0)",
-    "syntax_functions_decorators": "var(baseTeal0)",
-    "syntax_classes": "var(baseBlue2)",
-    "syntax_classes_interfaces": "var(baseBlue3)",
-    "syntax_literals_numeric": "var(baseBlue1)",
-    "syntax_literals_reserved": "var(basePurple1)",
-    "syntax_literals_string_double_quote": "var(baseOrange_fg0)",
-    "syntax_literals_string_single_quote": "var(baseOrange_fg1)",
-    "syntax_literals_string_special": "var(baseOrange_fg2)",
-    "syntax_import_path": "var(baseNeutral1)",
-    "syntax_punctuation_default": "var(baseNeutral0)",
-    "syntax_comment_line": "var(baseRed_fg0)",
-    "syntax_comment_block": "var(baseNeutral1)",
-    "syntax_comment_doc": "var(baseNeutral1)",
-    "syntax_comment_doc_header": "var(baseGold0)",
-    "syntax_comment_todo": "var(baseGold1)",
-    "syntax_comment_todo_keyword": "var(baseGold1)",
-    // SPECIAL
-    // Special - BG
-    "_git_added": "var(baseGreen0)",
-    "_git_modified": "var(baseOrange0)",
-    "_git_deleted": "var(baseRed0)",
-    // Special - FG
-    "_meta_missed": "var(basePink0)",
-    "_line_numbers": "var(baseNeutral0)",
-    "_caret": "var(baseNeutral1)",
-    "_error": "var(baseWhite0)",
-    "_rulers": "var(baseNeutral0)"
+    // ==========================================
+    // 1. BASE PALETTE (Raw Colors)
+    // ==========================================
+    // The Void (Backgrounds - deep abyssal cool-darks)
+    "base_bg_0": "#0B0E14", // Absolute darkest, main background
+    "base_bg_1": "#111520", // Slightly elevated, gutters
+    "base_bg_2": "#1A2030", // Selection areas
+    "base_bg_3": "#232A3F", // Highlights/Active lines
+    // The Noise (Neutrals - for structural UI)
+    "base_neutral_dim": "#465173", // Barely visible (Docs, hidden characters)
+    "base_neutral_mid": "#6B7A99", // UI borders, line numbers
+    "base_neutral_bright": "#A1B0D1", // Secondary UI elements
+    // The Data (Foregrounds)
+    "base_fg_main": "#D4DCE8", // Standard variables
+    "base_white": "#FFFFFF", // High emphasis
+    // The Power (Hues - high luminosity for dark mode)
+    "base_cyan": "#00E5FF", // Tech, Types, Classes
+    "base_mint": "#00FFAA", // Built-in primitives, foundational architecture
+    "base_plasma": "#39FF14", // Functions, Execution
+    "base_purple": "#B5179E", // Control flow, Keywords
+    "base_magenta": "#D500FF", // Truth evaluation, Logic gates
+    "base_pink": "#FF007F", // State Mutation, Math
+    "base_yellow": "#FCEEA7", // Strings, Payload data
+    "base_sapphire": "#0077FF",
+    "base_cyan_muted": "#0088AA",
+    "base_orange": "#FF5500", // Constants, Primitives, Immutable data
+    // Status & Alerts
+    "base_alert": "#FF9F1C", // Critical/Comments (Piercing Amber)
+    "base_error": "#FF003C", // Illegal, Deletions
+    "base_success": "#00FA9A", // Additions
+    // ==========================================
+    // 2. SEMANTIC MAPPINGS (Functional Usage)
+    // ==========================================
+    // Environment & UI
+    "env_bg": "var(base_bg_0)",
+    "env_gutter": "var(base_bg_1)",
+    "env_selection": "var(base_bg_2)",
+    "env_highlight": "var(base_bg_3)",
+    "env_border": "var(base_neutral_dim)",
+    "env_rulers": "var(base_neutral_dim)",
+    "env_caret": "var(base_cyan)",
+    "env_line_nums": "var(base_neutral_mid)",
+    // Core Syntax
+    "syntax_default": "var(base_fg_main)",
+    "syntax_keyword": "var(base_purple)",
+    "syntax_entity": "var(base_cyan)",
+    "syntax_function": "var(base_plasma)",
+    "syntax_variable": "var(base_fg_main)",
+    "syntax_string": "var(base_yellow)",
+    "syntax_operator_math": "var(base_pink)",
+    "syntax_operator_logic": "var(base_magenta)",
+    "syntax_punctuation": "var(base_neutral_mid)",
+    "syntax_mapping_keys": "var(base_sapphire)",
+    "syntax_reference": "var(base_cyan_muted)",
+    "syntax_constant": "var(base_orange)",
+    "syntax_attribute": "var(base_neutral_bright)",
+    "syntax_selector": "var(base_cyan_muted)",
+    "syntax_declaration": "var(base_cyan)",
+    "syntax_namespace": "var(base_neutral_bright)",
+    "syntax_primitive_type": "var(base_mint)",
+    "syntax_modifier": "var(base_neutral_bright)",
+    "syntax_module_ref": "var(base_neutral_bright)",
+    "syntax_property": "var(base_fg_main)",
+    "syntax_block_bg": "var(base_bg_1)",
+    // Specific Philosophy Mappings
+    "syntax_doc": "var(base_neutral_dim)",
+    "syntax_comment": "var(base_alert)",
+    // Git & Status
+    "git_added": "var(base_success)",
+    "git_modified": "var(base_alert)",
+    "git_deleted": "var(base_error)",
+    "git_ignored": "var(base_neutral_dim)", // Deeply suppressed noise
+    "git_untracked": "var(base_neutral_mid)", // Visible, but uncommitted
+    // Annotations (Inline Blame / HUD Badges)
+    "git_annotation_fg": "var(base_neutral_mid)",
+    "git_annotation_bg": "var(base_bg_1)", // Slight elevation from absolute void
+    // Fallbacks
+    "status_error": "var(base_error)",
+    "status_missed": "var(base_pink)"
   },
   // --- Globals ---
   "globals": {
-    "background": "var(background_default)",
-    "foreground": "var(_meta_missed)",
-    "caret": "var(_caret)",
-    "rulers": "var(_rulers)",
-    "guide": "var(_rulers)",
-    "active_guide": "var(_rulers)",
-    "stack_guide": "var(_rulers)",
+    "background": "var(env_bg)",
+    "foreground": "var(syntax_default)",
+    "caret": "var(env_caret)",
+    "rulers": "var(env_rulers)",
+    "guide": "var(env_rulers)",
+    "active_guide": "var(base_neutral_mid)",
+    "stack_guide": "var(env_rulers)",
     // Selection
-    "selection": "var(background_alt2)",
-    "selection_border": "var(background_accent)",
+    "selection": "var(env_selection)",
+    "selection_border": "var(base_neutral_bright)",
     "selection_border_width": "2",
+    // Minimap
+    "minimap_border": "var(base_neutral_bright)",
     // Gutter
-    "line_highlight": "var(background_alt2)",
-    "gutter": "var(background_alt)",
-    "gutter_foreground": "var(_line_numbers)",
-    "gutter_foreground_highlight": "var(_line_numbers)",
+    "line_highlight": "var(env_highlight)",
+    "gutter": "var(env_gutter)",
+    "gutter_foreground": "var(env_line_nums)",
+    "gutter_foreground_highlight": "var(base_white)",
     // Git
-    "line_diff_added": "var(_git_added)",
-    "line_diff_modified": "var(_git_modified)",
-    "line_diff_deleted": "var(_git_deleted)",
-    "popup_css": "html, body { background-color: #171a2b; color: #8f9ab5; } ",
-    "phantom_css": "span.nums { color: #5a9bfa; } span.context { color: #8f9ab5; } div.scope { color: #8f9ab5; }"
+    "line_diff_added": "var(git_added)",
+    "line_diff_modified": "var(git_modified)",
+    "line_diff_deleted": "var(git_deleted)",
+    // CSS Inserts (Surgical UI Overrides)
+    "popup_css": "html, body { background-color: #0B0E14; color: #D4DCE8; }",
+    "phantom_css": "#gitgutter-line-annotation { background-color: #111520; } html, body { background-color: #0B0E14 !important; color: #D4DCE8; } span.nums { color: #00E5FF; } span.context { color: #6B7A99; } div.scope { color: #6B7A99; }"
   },
   // --- Rules ---
   "rules": [
+    // ==========================================
+    // TIER 1: CORE LOGIC & ARCHITECTURE
+    // ==========================================
     {
-      "name": "Keywords and other Built-In/Reserved stuff",
-      "scope": "(keyword, punctuation.section.block, punctuation.section.function, punctuation.section.class, variable.language, constant.language, punctuation.accessor) -keyword.other.todo.comment",
+      "name": "Control Flow (The Brain)",
+      "scope": "keyword.control, keyword.other - (keyword.declaration | storage.type | storage.modifier), keyword.gomod",
+      "font_style": "italic",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "Engine Directives (Compile-Time State)",
+      "scope": "variable.language.compiler, punctuation.definition.variable.compiler, variable.language.compiler.directive",
+      "font_style": "italic bold underline",
       "foreground": "var(syntax_keyword)",
+      "background": "var(syntax_block_bg)",
     },
     {
-      "name": "Async",
-      "scope": "keyword.declaration.async",
-      "font_style": "italic"
+      "name": "Logical & Comparison Operators (The Gates)",
+      "scope": "keyword.operator.logical, keyword.operator.comparison, keyword.operator.relational",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_logic)"
     },
     {
-      "name": "Typing",
-      "scope": "support.class.typing, support.type, meta.type",
-      "foreground": "var(syntax_types)",
+      "name": "Math & Assignment Operators (The Mutations)",
+      "scope": "keyword.operator.assignment, keyword.operator.arithmetic, keyword.operator.math, keyword.operator.increment, keyword.operator.decrement",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_math)"
     },
     {
-      "name": "Function Definitions",
-      "scope": "meta.function",
-      "foreground": "var(syntax_functions_definition)",
+      "name": "Fallback Operators",
+      "scope": "keyword.operator",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_math)"
     },
     {
-      "name": "Function Definitions - DUNDER",
-      "scope": "support.function.magic",
-      "foreground": "var(syntax_functions_dunder_def)",
+      "name": "Architecture Declarations (The Blueprints)",
+      "scope": "keyword.other.version, keyword.declaration.module, storage.type.function, keyword.declaration.function, storage.type.class, keyword.declaration.class, storage.type.struct, keyword.declaration.struct, storage.type.enum, keyword.declaration.enum, storage.type.interface, keyword.declaration.interface, storage.type.type, keyword.declaration.type, storage.type.namespace, keyword.declaration.namespace, keyword.declaration.map, keyword.declaration.go",
       "font_style": "italic",
+      "foreground": "var(syntax_keyword)"
     },
     {
-      "name": "Function Calls",
-      "scope": "meta.function-call",
-      "foreground": "var(syntax_functions_call)",
-    },
-    {
-      "name": "Function Decorators",
-      "scope": "meta.annotation",
-      "foreground": "var(syntax_functions_decorators)",
-      "font_style": "underline italic",
-    },
-    {
-      "name": "Function Calls - DUNDER",
-      "scope": "support.variable.magic",
-      "foreground": "var(syntax_functions_dunder_call)",
+      "name": "Inheritance & Relational Modifiers",
+      "scope": "storage.modifier.extends, storage.modifier.implements, keyword.declaration.implements, keyword.declaration.extends",
       "font_style": "italic",
+      "foreground": "var(syntax_modifier)"
     },
     {
-      "name": "Functions - Parameters",
+      "name": "Event Hooks (onShow, onHide)",
+      "scope": "keyword.control.event",
+      "font_style": "bold",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "State Declarations (Memory Allocation)",
+      "scope": "keyword.declaration.var, keyword.declaration.const, storage.type.variable, storage.type.constant",
+      "font_style": "italic",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "Data Modifiers (The Traits)",
+      "scope": "storage.modifier, storage.type.modifier",
+      "font_style": "italic",
+      "foreground": "var(syntax_modifier)"
+    },
+    {
+      "name": "User-Defined Types, Classes, and Modules",
+      "scope": "entity.name.type, entity.name.class, entity.name.module, support.class, storage.type, variable.parameter.type, variable.other.type",
+      "font_style": "bold",
+      "foreground": "var(syntax_entity)"
+    },
+    {
+      "name": "Inherited Classes & Interfaces (Pointers)",
+      "scope": "entity.other.inherited-class",
+      "font_style": "italic",
+      "foreground": "var(syntax_reference)"
+    },
+    {
+      "name": "Namespaces",
+      "scope": "entity.name.namespace",
+      "foreground": "var(syntax_namespace)"
+    },
+    {
+      "name": "Functions (The Actions)",
+      "scope": "entity.name.function, support.function, variable.function",
+      "font_style": "bold",
+      "foreground": "var(syntax_function)"
+    },
+    {
+      "name": "Module and Package References",
+      "scope": "support.other.module",
+      "font_style": "italic",
+      "foreground": "var(syntax_module_ref)"
+    },
+    // ==========================================
+    // TIER 2: DATA & STATE
+    // ==========================================
+    {
+      "name": "Built-In Primitive Types (The Raw Material)",
+      "scope": "support.type, support.type.builtin, support.type.primitive",
+      "font_style": "italic",
+      "foreground": "var(syntax_primitive_type)"
+    },
+    {
+      "name": "Variable Declaration (The Birth of State)",
+      "scope": "entity.name.variable, meta.definition.variable, variable.other.readwrite.declaration, variable.other.declaration, variable.other.assignment",
+      "font_style": "bold",
+      "foreground": "var(syntax_variable)"
+    },
+    {
+      "name": "Variable Parameters (Injected State)",
       "scope": "variable.parameter",
-      "foreground": "var(syntax_functions_parameters)",
       "font_style": "italic",
+      "foreground": "var(syntax_variable)"
     },
     {
-      "name": "Classes - Definitions",
-      "scope": "meta.class",
-      "foreground": "var(syntax_classes)",
-      "font_style": "bold"
-    },
-    {
-      "name": "Classes - Inherits",
-      "scope": "meta.class entity.other.inherited-class",
-      "foreground": "var(syntax_classes)",
-      "font_style": "italic"
-    },
-    {
-      "name": "Classes - References",
-      "scope": "support.class -support.class.typing",
-      "foreground": "var(syntax_classes)",
-      "font_style": "underline",
-    },
-    {
-      "name": "Classes - Interfaces",
-      "scope": "support.class.interface",
-      "foreground": "var(syntax_classes_interfaces)",
-      "font_style": "bold italic",
-    },
-    {
-      "name": "Import paths",
-      "scope": "meta.statement.import -keyword",
-      "foreground": "var(syntax_import_path)",
-      "font_style": "italic"
-    },
-    {
-      "name": "Variables",
-      "scope": "((meta.path | meta.statement.exception.catch) & meta.generic-name) -meta.type",
-      "foreground": "var(syntax_variables)"
-    },
-    {
-      "name": "Variables - Imports",
-      "scope": "meta.statement.import & (meta.generic-name | variable)",
-      "foreground": "var(syntax_variables)",
+      "name": "Variable Reference (Pointers)",
+      "scope": "variable.other, support.class.color-set",
       "font_style": "italic",
+      "foreground": "var(syntax_reference)"
     },
     {
-      "name": "Variables - Private",
-      "scope": "variable.other.private",
-      "foreground": "var(syntax_variables_private)"
+      "name": "Properties and Members (Object State)",
+      "scope": "variable.other.member, variable.other.property, meta.property.object",
+      "foreground": "var(syntax_property)",
+      "font_style": "",
     },
     {
-      "name": "Variables - Strong Private",
-      "scope": "variable.other.private.strong",
-      "foreground": "var(syntax_variables_private_strong)"
+      "name": "Built-In Language Schema Keys (DSL Properties)",
+      "scope": "support.type.property-name",
+      "font_style": "",
+      "foreground": "var(syntax_attribute)"
     },
     {
-      "name": "Literals - Numeric",
-      "scope": "constant.numeric",
-      "foreground": "var(syntax_literals_numeric)"
+      "name": "Strings",
+      "scope": "(string) - (meta.mapping.key)",
+      "foreground": "var(syntax_string)"
     },
     {
-      "name": "Literals - Strings - Double Quoted",
-      "scope": "(string.quoted.double, string.quoted.double punctuation.definition.string) -meta.type -meta.typing",
-      "foreground": "var(syntax_literals_string_double_quote)"
+      "name": "Constants, Colors, and Numbers",
+      "scope": "constant, support.constant, constant.numeric, variable.gomod",
+      "font_style": "bold",
+      "foreground": "var(syntax_constant)"
     },
     {
-      "name": "Literals - Strings - Single Quoted",
-      "scope": "(string.quoted.single, string.quoted.single punctuation.definition.string ) -meta.type -meta.typing",
-      "foreground": "var(syntax_literals_string_single_quote)"
+      "name": "Constant Properties (Object State Lookups)",
+      "scope": "variable.other.constant.property, variable.other.constant",
+      "font_style": "italic bold",
+      "foreground": "var(syntax_property)"
     },
     {
-      "name": "Literals - Strings - Regex / Special",
-      "scope": "string.regexp, string.regexp punctuation.definition.string",
-      "foreground": "var(syntax_literals_string_special)"
+      "name": "Built-In Constants & Enums",
+      "scope": "constant.language, support.constant.font-style",
+      "font_style": "bold underline",
+      "foreground": "var(syntax_constant)"
     },
-    {
-      "name": "Interpolated Part of String",
-      "scope": "meta.interpolation",
-      "font_style": "stippled_underline"
-    },
-    {
-      "name": "Literals - Reserved",
-      "scope": "constant.language.boolean, constant.language.null, constant.language.nan, constant.language.infinity",
-      "foreground": "var(syntax_literals_reserved)",
-      "font_style": "bold"
-    },
-    {
-      "name": "Constants",
-      "scope": "variable.other.constant -meta.statement.import -meta.type -meta.typing",
-      "foreground": "var(syntax_constants)",
-      "font_style": "bold"
-    },
-    {
-      "name": "Constants - private",
-      "scope": "variable.other.constant.private -meta.statement.import -meta.type -meta.typing",
-      "foreground": "var(syntax_constants_private)",
-      "font_style": "bold"
-    },
-    {
-      "name": "Constants - strong private",
-      "scope": "variable.other.constant.private.strong -meta.statement.import -meta.type -meta.typing",
-      "foreground": "var(syntax_constants_private_strong)",
-      "font_style": "bold"
-    },
-    {
-      "name": "Storage Modifiers",
-      "scope": "storage.modifier, storage.type, constant.character.escape",
-      "foreground": "var(syntax_storage_modifier)"
-    },
+    // ==========================================
+    // TIER 3: STRUCTURAL NOISE
+    // ==========================================
     {
       "name": "Punctuation",
-      "scope": "punctuation -constant.numeric -meta.annotation",
-      "foreground": "var(syntax_punctuation_default)",
+      "scope": "punctuation",
+      "foreground": "var(syntax_punctuation)"
     },
     {
-      "name": "Comments - Line",
+      "name": "Documentation (Dim)",
+      "scope": "comment.block, string.quoted.docstring",
+      "font_style": "italic",
+      "foreground": "var(syntax_doc)"
+    },
+    {
+      "name": "Comments (Alert/Critical)",
       "scope": "comment.line",
-      "foreground": "var(syntax_comment_line)",
-      "font_style": "italic"
+      "font_style": "bold",
+      "foreground": "var(syntax_comment)"
     },
+    // ==========================================
+    // TIER 4: SPECIFIC LANGUAGE OVERRIDES
+    // ==========================================
     {
-      "name": "Comments - Block",
-      "scope": "comment.block -comment.block.documentation",
-      "foreground": "var(syntax_comment_block)",
-      "font_style": "italic"
-    },
-    {
-      "name": "Comments - Doc - Summary",
-      "scope": "comment.block.documentation.summary",
-      "foreground": "color(var(syntax_comment_doc) l(+ 5%))",
-      "font_style": "bold"
-    },
-    {
-      "name": "Comments - Doc - Headers",
-      "scope": "keyword.other.documentation.section",
-      "foreground": "var(syntax_comment_doc_header)",
-      "font_style": "bold"
-    },
-    {
-      "name": "Comments - Doc - Arg Names",
-      "scope": "variable.parameter.documentation",
-      "foreground": "var(syntax_functions_parameters)",
-      "font_style": "italic"
-    },
-    {
-      "name": "Comments - Doc - Arg Types",
-      "scope": "support.type.documentation",
-      "foreground": "var(syntax_types)",
+      "name": "JSON/Dict Keys and Schema Keywords",
+      "scope": "meta.mapping.key, source.json.sublime.color-scheme keyword.other, keyword.other.rule.sublime-color-scheme, keyword.other.main.sublime-color-scheme, keyword.other.variables.sublime-color-scheme",
+      "foreground": "var(syntax_mapping_keys)",
       "font_style": ""
     },
     {
-      "name": "Comments - Doc - Arg Descriptions",
-      "scope": "comment.block.documentation.description | comment.block.documentation",
-      "foreground": "var(syntax_comment_doc)",
+      "name": "JSON/Dict Value",
+      "scope": "meta.mapping.value",
+      "foreground": "var(syntax_variable)"
+    },
+    {
+      "name": "HTML/XML Tags",
+      "scope": "entity.name.tag",
+      "font_style": "bold",
+      "foreground": "var(syntax_entity)"
+    },
+    {
+      "name": "HTML Attributes & CSS Classes/IDs",
+      "scope": "entity.other.attribute-name",
+      "foreground": "var(syntax_attribute)"
+    },
+    {
+      "name": "Properties, Attributes, and Schema Keys",
+      "scope": "meta.property.name, entity.other.attribute-name",
+      "foreground": "var(syntax_attribute)"
+    },
+    {
+      "name": "Sublime Syntax: Scope Declarations (Overrides storage.type)",
+      "scope": "storage.type.scope-name, storage.modifier.meta-scope, storage.type.meta-scope, storage.type.display-name, storage.type.version, source.yaml.sublime.syntax entity.name.tag",
+      "font_style": "",
+      "foreground": "var(syntax_attribute)"
+    },
+    {
+      "name": "Scope Selectors (Overrides Strings)",
+      "scope": "string.unquoted.scope-segment, meta.scope.sublime-syntax string",
       "font_style": "italic",
+      "foreground": "var(syntax_selector)"
     },
     {
-      "name": "Comments - TODO - Line",
-      "scope": "comment.line.todo",
-      "foreground": "var(syntax_comment_todo)",
-      "font_style": "bold italic underline"
+      "name": "Regular Expressions (Literal Base)",
+      "scope": "string.regexp, meta.literal.regexp",
+      "foreground": "var(syntax_string)"
     },
     {
-      "name": "Comments - TODO - Keyword",
-      "scope": "keyword.other.todo.comment",
-      "foreground": "var(syntax_comment_todo_keyword)",
-      "font_style": "bold underline"
+      "name": "Regular Expressions: Escapes (Primitives)",
+      "scope": "constant.character.escape",
+      "font_style": "bold",
+      "foreground": "var(syntax_constant)"
+    },
+    {
+      "name": "Regular Expressions: Assertions (Logic Gates)",
+      "scope": "constant.other.assertion",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_logic)"
+    },
+    {
+      "name": "Go: Struct Tags / Annotations",
+      "scope": "variable.annotation, meta.annotation.identifier, meta.annotation",
+      "font_style": "italic",
+      "foreground": "var(syntax_attribute)"
+    },
+    // ==========================================
+    // LANGSPEC: CORE ENGINE & BLOCKS
+    // ==========================================
+    {
+      "name": "LangSpec: Elevated Block Backgrounds",
+      "scope": "meta.header.body.lspec, meta.meta-section.body.lspec",
+      "background": "var(syntax_block_bg)"
+    },
+    {
+      "name": "LangSpec: Language Identity (The God Entity)",
+      "scope": "entity.name.language.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_entity)"
+    },
+    {
+      "name": "LangSpec: Section Declarations (The Blueprints)",
+      "scope": "keyword.pragma.lspec, keyword.tool.lspec, keyword.lspec.lspec, keyword.declaration.pattern.lspec, keyword.declaration.lex.lspec, keyword.declaration.parse.lspec, keyword.declaration.pratt.lspec, keyword.declaration.ignore.lspec",
+      "font_style": "bold italic",
+      "foreground": "var(syntax_declaration)"
+    },
+    {
+      "name": "LangSpec: Parse Rules (Function Declarations)",
+      "scope": "entity.name.function.parser-expression.lspec, entity.name.function.parser-rule.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_function)"
+    },
+    {
+      "name": "LangSpec: User-Defined Tokens & Roles (The Birth)",
+      "scope": "entity.name.pattern.constant.lspec, entity.name.token.lspec, entity.name.token-role.lspec, entity.name.type.parser-node.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_entity)"
+    },
+    {
+      "name": "LangSpec: References & Calls (The Life/Pointers)",
+      "scope": "constant.language.pattern-reference.lspec, constant.language.token-reference.lspec, constant.language.symbol-reference.lspec, constant.language.token-role-reference.lspec, entity.name.function.expression-reference.lspec",
+      "font_style": "italic",
+      "foreground": "var(syntax_reference)"
+    },
+    {
+      "name": "LangSpec: Expression References",
+      "scope": "entity.name.function.expression-reference.lspec",
+      "font_style": "italic underline",
+    },
+    {
+      "name": "LangSpec: AST Modifiers (The Traits)",
+      "scope": "keyword.operator.transparent.lspec, keyword.operator.virtual.lspec, keyword.operator.implicit.lspec",
+      "font_style": "italic",
+      "foreground": "var(syntax_modifier)"
+    },
+    {
+      "name": "LangSpec: Parser Control Flow (The Engine)",
+      "scope": "keyword.operator.nest.lspec, keyword.operator.sync.lspec, keyword.operator.predict.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "LangSpec: Logical OR (The Gates)",
+      "scope": "punctuation.pipe.lspec -meta.header, keyword.operator.alternation.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_logic)"
+    },
+    {
+      "name": "LangSpec: Quantifiers (The Mutations)",
+      "scope": "keyword.operator.optional.lspec, keyword.operator.star.lspec, keyword.operator.plus.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_math)"
+    },
+    {
+      "name": "LangSpec: Parse Groups (Execution Boundaries)",
+      "scope": "meta.parse-group.body.lspec punctuation.section.parens",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_logic)"
+    },
+    // ==========================================
+    // RULEFORGE
+    // ==========================================
+    {
+      "name": "Game State Properties (External/Injected)",
+      "scope": "variable.other.property.game.rf, variable.other.property.game",
+      "font_style": "italic",
+      "foreground": "var(syntax_property)"
+    },
+    // ==========================================
+    // GIT GUTTER & TELEMETRY
+    // ==========================================
+    {
+      "name": "GitGutter: Tracking Status",
+      "scope": "markup.inserted.git_gutter",
+      "foreground": "var(git_added)"
+    },
+    {
+      "name": "GitGutter: Changed",
+      "scope": "markup.changed.git_gutter",
+      "foreground": "var(git_modified)"
+    },
+    {
+      "name": "GitGutter: Deleted",
+      "scope": "markup.deleted.git_gutter",
+      "foreground": "var(git_deleted)"
+    },
+    {
+      "name": "GitGutter: Ignored",
+      "scope": "markup.ignored.git_gutter",
+      "foreground": "var(git_ignored)"
+    },
+    {
+      "name": "GitGutter: Untracked",
+      "scope": "markup.untracked.git_gutter",
+      "foreground": "var(git_untracked)"
+    },
+    {
+      "name": "GitGutter: Inline Annotation (Blame)",
+      "scope": "comment.line.annotation.git_gutter",
+      "font_style": "italic",
+      "foreground": "var(git_annotation_fg)"
+    },
+    // ==========================================
+    // GO MOD: DEPENDENCY ARCHITECTURE
+    // ==========================================
+    {
+      "name": "Go Mod: Module Paths (The Network Data)",
+      "scope": "string.unquoted.module-path.gomod, entity.name.reference.module.gomod, entity.name.reference.module.original.gomod, entity.name.reference.module.target.gomod, entity.name.reference.toolchain.gomod, entity.name.reference.tool.gomod",
+      "font_style": "",
+      "foreground": "var(syntax_string)"
+    },
+    {
+      "name": "Go Mod: Versions (The Immutable Milestones)",
+      "scope": "constant.numeric.version.gomod, constant.numeric.version.low.gomod, constant.numeric.version.high.gomod",
+      "font_style": "bold",
+      "foreground": "var(syntax_constant)"
+    },
+    {
+      "name": "Go Mod: Block Keywords (The Control Flow)",
+      "scope": "keyword.control.require.gomod, keyword.control.replace.gomod, keyword.control.exclude.gomod, keyword.control.retract.gomod",
+      "font_style": "italic",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "Go Mod: Toolchain & Tool Directives (The Primitives)",
+      "scope": "keyword.declaration.toolchain.gomod, keyword.declaration.tool.gomod, keyword.declaration.godebug.gomod",
+      "font_style": "italic",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
+      "name": "Go Mod: Arrow Operator (The Mutation)",
+      "scope": "keyword.operator.arrow.gomod",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_math)"
+    },
+    {
+      "name": "Go Mod: Godebug Key/Values (The Configuration)",
+      "scope": "meta.reference.godebug.gomod support.type.property-name.gomod",
+      "font_style": "italic",
+      "foreground": "var(syntax_attribute)"
+    },
+    {
+      "name": "Go Mod: Values",
+      "scope": "constant.language.value.gomod",
+      "font_style": "bold",
+      "foreground": "var(syntax_constant)"
+    },
+    // ==========================================
+    // TIER 5: SYSTEM ALERTS & FALLBACKS
+    // ==========================================
+    {
+      "name": "Fallback",
+      "scope": "source",
+      "foreground": "var(status_missed)"
     },
     {
       "name": "Illegal",
       "scope": "invalid",
       "font_style": "underline bold",
-      "foreground": "var(_error)",
-    },
-    // FALLBACK
-    {
-      "name": "Fallback",
-      "scope": "source.python",
-      "foreground": "var(_meta_missed)",
+      "foreground": "var(status_error)"
     }
-  ],
+  ]
 }
