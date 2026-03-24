@@ -1,24 +1,10 @@
 # Noesis Color Scheme
 
-## Examples
-
-<details>
-<summary>Click to expand screenshots</summary>
-
-| | |
-|---|---|
-| <img src="./examples/00_example.png" width="400"> | <img src="./examples/01_example.png" width="400"> |
-| <img src="./examples/02_example.png" width="400"> | <img src="./examples/03_example.png" width="400"> |
-
-</details>
-
----------
-
 Greetings, fellow deity.
 
 This color scheme is available for you to enjoy!
 
-Note: *if using a different language than Python, the scheme may not work properly out of the box.*
+Note: *If using languages other than Go (specifically `go.mod`), Python, or custom `.lspec` definitions, the scheme may not work properly out of the box. It relies on highly specific semantic scopes.*
 
 ## Table of Contents
 
@@ -32,12 +18,12 @@ Note: *if using a different language than Python, the scheme may not work proper
 
 ## Introduction
 
-I initially created this color scheme for Python as I was starting my project to create Noesis; a truly intelligent AI, unlike LLMs.
-In order to prevent overflowing you with irrelevant details, I will only briefly mention the scope of my project, so you gain the context for this theme. 
+I initially created this color scheme for Python, but have since rebuilt it from the ground up (v2.0) to support a much wider and more rigorous architectural vision. It now natively supports custom domain-specific languages (like `lspec` and `ruleforge`), Go modules, and standard programming constructs with extreme precision. 
+
+This project began alongside my work to create Noesis; a truly intelligent AI, unlike LLMs. In order to prevent overflowing you with irrelevant details, I will only briefly mention the scope of my project, so you gain the context for this theme. 
 See [Noesis Context](#noesis-context) for this explanation.
 
-My color scheme was intended to evoke in me a feeling of working on a great project like this, to create life, to be a god.
-In alignment with truth itself. Every hue is therefore carefully selected to not just be conceptually and semantically linked to what it colors, but also to follow the overall themes of:
+My color scheme was intended to evoke in me a feeling of working on a great project like this, to create life, to be a god. In alignment with truth itself. Every hue is therefore carefully selected to not just be conceptually and semantically linked to what it colors, but also to follow the overall themes of:
 - Power
 - Wisdom
 - Truth
@@ -79,7 +65,7 @@ Hence, none of the time and energy is wasted, even if I don't succeed in replica
 
 ## Usage
 1. Install through the Sublime Text package manager or manually import it.
-2. Make sure you set the Python syntax to use my Python Extended syntax for some additional semantic coloring.
+2. For maximum effect, use it alongside custom syntaxes that map to the semantic variables (e.g., `syntax_keyword`, `syntax_function`).
 
 If you want to use it with other languages, be sure to expect bugs, and feel free to [contribute](#contributing) your implementations for other languages.
 
@@ -100,32 +86,34 @@ As mentioned earlier, I wanted to have a certain color theme in mind when workin
 - Truth
 - Logic
 
-While also semantically linking colors to functionality, and allowing for proper context.
+Version 2.0 introduces a strict architecture separating the **Base Palette** (absolute hex colors) from **Semantic Mappings** (functional assignments like `syntax_keyword`), ensuring that the rules only consume semantic variables.
 
-What follows is a table with hues, their semantic meaning, and a description.
+What follows is the mapped hue philosophy, updated for v2.0:
 
-| Hue         | Semantic Meaning in Code                          | Why This Hue Was Chosen                                                                                                               |
-|-------------|---------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| Blue        | Types, classes, numeric literals                  | Blue represents order, clarity, and structure — perfect for logical constructs like types and classes, anchoring the system in truth. |
-| Purple      | Keywords, reserved literals                       | Purple embodies mystery and higher power, aligning with the godlike force of keywords and reserved truths in the code.                |
-| Green       | Variables, additions (git), success states        | Green signifies life and growth, making it apt for variables (things that live/change) and signals of creation or addition.           |
-| Gold        | Constants, storage modifiers, important comments  | Gold symbolizes permanence, authority, and value — constants are immovable truths, so they shine with immutable wisdom.               |
-| Cyan / Teal | Functions, parameters, decorators                 | Cyan/teal feels sharp, clean, and advanced — ideal for functions, the active agents of logic and transformation.                      |
-| Orange      | Strings, git modifications                        | Orange is energetic and noticeable, representing dynamic content (strings) and mutable change (modifications in git).                 |
-| Red         | Comments, deletions, warnings/errors              | Red carries both danger and intensity — appropriate for destructive actions (deletions), critical remarks (comments), and errors.     |
-| Pink        | Meta / missed tokens                              | Pink feels foreign and anomalous — chosen to stand out when something does not align, representing the outlier.                       |
-| White       | Error highlight, illegals                         | White cuts through the darkness with absolute clarity — the blinding spotlight of truth exposing errors.                              |
-| Neutral Grey| Background accents, punctuation, secondary text   | Grey offers balance and restraint — the scaffolding that supports but does not dominate, grounding the eye for focus and logic.       |
+| Hue | Hex Value | Semantic Meaning in Code | Why This Hue Was Chosen |
+|---|---|---|---|
+| **Abyssal Dark** | `#0B0E14` -> `#232A3F` | Backgrounds, Selection, Active Lines | Represents the void; absolute emptiness that allows the data to shine without distraction. |
+| **Neutral Noise** | `#465173` -> `#A1B0D1` | UI Borders, Line Numbers, Documentation | The structural scaffolding. Grey offers balance and restraint; it supports but does not dominate. |
+| **Main Foreground**| `#D4DCE8` | Standard Variables, Properties | The baseline truth. Clear, legible, and unopinionated. |
+| **White** | `#FFFFFF` | High Emphasis, Error Highlights | Cuts through the darkness with absolute clarity. The blinding spotlight of truth. |
+| **Cyan** | `#00E5FF` | Types, Classes, Declarations | Feels sharp, clean, and advanced. Used for structural blueprints and architectural truth. |
+| **Mint** | `#00FFAA` | Built-in Primitives | Represents foundational architecture. The raw material of the system. |
+| **Plasma** | `#39FF14` | Functions, Execution | Highly active and energetic. Represents the active agents of logic and transformation. |
+| **Purple** | `#B5179E` | Control Flow, Keywords | Embodies mystery and higher power, aligning with the godlike force of keywords that control the universe of the code. |
+| **Magenta** | `#D500FF` | Logic Gates, Truth Evaluation | Intense and piercing. Used for logical comparisons where absolute truth is evaluated. |
+| **Pink** | `#FF007F` | State Mutation, Math, Missed Tokens | Anomalous and dynamic. Stands out to represent mathematical shifts or elements that fall outside standard bounds. |
+| **Yellow** | `#FCEEA7` | Strings, Payload Data | Luminous and distinct. Used for raw data payloads and mutable content. |
+| **Orange** | `#FF5500` | Constants, Immutable Data | Symbolizes permanence, authority, and value. Constants are immovable truths, shining with immutable wisdom. |
+| **Alert/Amber** | `#FF9F1C` | Critical Comments, Git Modified | Piercing and urgent. Demands immediate attention without breaking the system. |
+| **Error Red** | `#FF003C` | Illegal Tokens, Deletions | Carries danger and intensity. Appropriate for destructive actions or critical system failures. |
 
-Note: *This table has been generated using ChatGPT to save time, so there might be minor inconsistencies with the actual theme. I will rewrite this at some point myself.*
-
-Some further information about comments... 
+#### A Note on Comments
 Many people think comments should be unobvious since they write a lot of comments.
 I disagree. I am more in camp with Bob Martin, and think comments indicate poor expression in code, 
 thus comments are written ONLY when I cannot express myself properly in code. 
-As such, the rare comments that I do place are highly important, critical even... Thus they must stand out.
+As such, the rare comments that I do place are highly important, critical even... Thus they must stand out (mapped to `base_alert`).
 
-By contrast, documentation (doc-strings in Python) are written for every public function and class, and are thus not as critical to see.
+By contrast, documentation (doc-strings) are written for every public function and class, and are thus not as critical to see (mapped to `base_neutral_dim`).
 
 ## Contact
 The following means of communication are available to you in order to contact me:
@@ -141,6 +129,11 @@ metacognition, learning how to learn, education, etc.
 
 ## Changelog
 
+### 24 March 2026 (v2.0.0):
+- **Complete Rewrite:** Architected the theme into Tiered Logic (Base Palette -> Semantic Mappings -> Rules).
+- **Expanded Language Support:** Added hyper-specific, semantic styling for LangSpec (`.lspec`), Ruleforge, and Go Modules (`go.mod`).
+- **Enhanced Visual Hierarchy:** Introduced semantic variables for logical operators, math mutations, and engine directives.
+- **GitGutter Integration:** Native support for inline Git blame annotations and status badges.
+
 ### 26 September 2025 (v1.2.4):
 - Initial release of my scheme up to now.
-
