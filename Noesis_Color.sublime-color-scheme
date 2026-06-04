@@ -42,6 +42,7 @@
     "base_yellow": "#FCEEA7", // Strings, Payload data
     "base_sapphire": "#0077FF",
     "base_cyan_muted": "#0088AA",
+    "base_cyan_muted_alt": "#00A896", // Passed Arguments (Deep Teal)
     "base_orange": "#FF5500", // Constants, Primitives, Immutable data
     // Status & Alerts
     "base_alert": "#FF9F1C", // Critical/Comments (Piercing Amber)
@@ -71,6 +72,7 @@
     "syntax_punctuation": "var(base_neutral_mid)",
     "syntax_mapping_keys": "var(base_sapphire)",
     "syntax_reference": "var(base_cyan_muted)",
+    "syntax_generic_arg_pass": "var(base_cyan_muted_alt)",
     "syntax_constant": "var(base_orange)",
     "syntax_attribute": "var(base_neutral_bright)",
     "syntax_selector": "var(base_cyan_muted)",
@@ -81,6 +83,8 @@
     "syntax_module_ref": "var(base_neutral_bright)",
     "syntax_property": "var(base_fg_main)",
     "syntax_block_bg": "var(base_bg_1)",
+    "syntax_architecture_boundary": "var(base_mint)",
+    "syntax_target_node": "var(base_sapphire)",
     // Specific Philosophy Mappings
     "syntax_doc": "var(base_neutral_dim)",
     "syntax_comment": "var(base_alert)",
@@ -192,10 +196,22 @@
       "foreground": "var(syntax_modifier)"
     },
     {
-      "name": "User-Defined Types, Classes, and Modules",
-      "scope": "entity.name.type, entity.name.class, entity.name.module, support.class, storage.type, variable.parameter.type, variable.other.type",
+      "name": "User-Defined Types, Classes, and Modules (The Data Domain)",
+      "scope": "entity.name.interface, entity.other.pseudo-class, entity.name.type, entity.name.class, entity.name.module, entity.name.label, storage.type, variable.parameter.type, variable.other.type",
       "font_style": "bold",
       "foreground": "var(syntax_entity)"
+    },
+    {
+      "name": "Function Declaration (The Logic Blueprint)",
+      "scope": "entity.name.function",
+      "font_style": "bold",
+      "foreground": "var(syntax_function)"
+    },
+    {
+      "name": "Function Invocation (The Execution)",
+      "scope": "meta.function-call entity.name.function, meta.function-call support.function, support.function, variable.function",
+      "font_style": "italic",
+      "foreground": "var(syntax_function)"
     },
     {
       "name": "Inherited Classes & Interfaces (Pointers)",
@@ -209,16 +225,22 @@
       "foreground": "var(syntax_namespace)"
     },
     {
-      "name": "Functions (The Actions)",
-      "scope": "entity.name.function, support.function, variable.function",
-      "font_style": "bold",
-      "foreground": "var(syntax_function)"
-    },
-    {
       "name": "Module and Package References",
-      "scope": "support.other.module",
+      "scope": "support.other.module, variable.namespace",
       "font_style": "italic",
       "foreground": "var(syntax_module_ref)"
+    },
+    {
+      "name": "Module Alias (The Local Pointer)",
+      "scope": "entity.name.module.alias, meta.module.alias",
+      "font_style": "italic",
+      "foreground": "var(syntax_entity)"
+    },
+    {
+      "name": "Architecture Boundaries & Sections",
+      "scope": "entity.name.section",
+      "font_style": "bold",
+      "foreground": "var(syntax_architecture_boundary)"
     },
     // ==========================================
     // TIER 2: DATA & STATE
@@ -230,6 +252,12 @@
       "foreground": "var(syntax_primitive_type)"
     },
     {
+      "name": "Built-In Language Variables (Instance Pointers)",
+      "scope": "variable.language.this, variable.language.super",
+      "font_style": "italic",
+      "foreground": "var(syntax_keyword)"
+    },
+    {
       "name": "Variable Declaration (The Birth of State)",
       "scope": "entity.name.variable, meta.definition.variable, variable.other.readwrite.declaration, variable.other.declaration, variable.other.assignment",
       "font_style": "bold",
@@ -238,18 +266,31 @@
     {
       "name": "Variable Parameters (Injected State)",
       "scope": "variable.parameter",
-      "font_style": "italic",
+      "font_style": "italic bold",
       "foreground": "var(syntax_variable)"
     },
     {
-      "name": "Variable Reference (Pointers)",
-      "scope": "variable.other, support.class.color-set",
+      "name": "Framework & Support Classes (External Blueprints)",
+      "scope": "support.class",
       "font_style": "italic",
       "foreground": "var(syntax_reference)"
     },
     {
+      "name": "Variable Reference (State Pointers)",
+      "scope": "variable.other",
+      "font_style": "italic",
+      "foreground": "var(syntax_variable)"
+    },
+    {
+      "name": "Variable Reference: Interpolated (Injected State)",
+      "scope": "meta.interpolation variable.other, variable.other.interpolated",
+      "font_style": "italic bold",
+      "foreground": "var(syntax_variable)",
+      "background": "var(syntax_block_bg)"
+    },
+    {
       "name": "Properties and Members (Object State)",
-      "scope": "variable.other.member, variable.other.property, meta.property.object",
+      "scope": "variable.other.member, variable.other.property, meta.property.object, entity.other.custom-property",
       "foreground": "var(syntax_property)",
       "font_style": "",
     },
@@ -263,6 +304,12 @@
       "name": "Strings",
       "scope": "(string) - (meta.mapping.key)",
       "foreground": "var(syntax_string)"
+    },
+    {
+      "name": "Strings: Interpolation Boundaries (The State Rip)",
+      "scope": "punctuation.section.interpolation",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_math)"
     },
     {
       "name": "Constants, Colors, and Numbers",
@@ -368,6 +415,15 @@
       "foreground": "var(syntax_attribute)"
     },
     // ==========================================
+    // JS & TS
+    // ==========================================
+    {
+      "name": "JS/TS: Constructor Type Invocation",
+      "scope": "meta.function-call.constructor variable.type",
+      "font_style": "bold",
+      "foreground": "var(syntax_entity)"
+    },
+    // ==========================================
     // LANGSPEC: CORE ENGINE & BLOCKS
     // ==========================================
     {
@@ -382,21 +438,33 @@
       "foreground": "var(syntax_entity)"
     },
     {
-      "name": "LangSpec: Section Declarations (The Blueprints)",
-      "scope": "keyword.pragma.lspec, keyword.tool.lspec, keyword.lspec.lspec, keyword.declaration.pattern.lspec, keyword.declaration.lex.lspec, keyword.declaration.parse.lspec, keyword.declaration.pratt.lspec, keyword.declaration.ignore.lspec",
-      "font_style": "bold italic",
-      "foreground": "var(syntax_declaration)"
+      "name": "LangSpec: Section Boundaries (The Absolute Framework)",
+      "scope": "keyword.declaration.import.lspec, keyword.pragma.lspec, keyword.tool.lspec, keyword.lspec.lspec, keyword.declaration.pattern.lspec, keyword.declaration.lex.lspec, keyword.declaration.parse.lspec, keyword.declaration.pratt.lspec, keyword.declaration.ignore.lspec",
+      "font_style": "bold",
+      "foreground": "var(syntax_architecture_boundary)",
     },
     {
       "name": "LangSpec: Parse Rules (Function Declarations)",
-      "scope": "entity.name.function.parser-expression.lspec, entity.name.function.parser-rule.lspec",
+      "scope": "entity.name.function.parser-expression.lspec, entity.name.function.parser-rule.lspec, entity.name.template.lspec",
       "font_style": "bold",
       "foreground": "var(syntax_function)"
     },
     {
       "name": "LangSpec: User-Defined Tokens & Roles (The Birth)",
-      "scope": "entity.name.pattern.constant.lspec, entity.name.token.lspec, entity.name.token-role.lspec, entity.name.type.parser-node.lspec",
+      "scope": "entity.name.pattern.constant.lspec, entity.name.token.lspec, entity.name.token-role.lspec, entity.name.type.parser-node.lspec, entity.name.token-pair",
       "font_style": "bold",
+      "foreground": "var(syntax_entity)"
+    },
+    {
+      "name": "LangSpec: Import Path (The External Source)",
+      "scope": "string.quoted.double.import.lspec",
+      "font_style": "italic",
+      "foreground": "var(syntax_string)"
+    },
+    {
+      "name": "LangSpec: Import Alias (The Local Pointer)",
+      "scope": "entity.name.import.alias.lspec",
+      "font_style": "bold italic",
       "foreground": "var(syntax_entity)"
     },
     {
@@ -404,6 +472,35 @@
       "scope": "constant.language.pattern-reference.lspec, constant.language.token-reference.lspec, constant.language.symbol-reference.lspec, constant.language.token-role-reference.lspec, entity.name.function.expression-reference.lspec",
       "font_style": "italic",
       "foreground": "var(syntax_reference)"
+    },
+    {
+      "name": "LangSpec: Template Refs",
+      "scope": "entity.name.template-reference",
+      "font_style": "italic",
+      "foreground": "var(syntax_function)",
+      "background": "var(syntax_block_bg)"
+    },
+    {
+      "name": "LangSpec: Template Args Passed - Section",
+      "scope": "meta.parse-template-call-args.body.lspec",
+      "background": "var(syntax_block_bg)"
+    },
+    {
+      "name": "LangSpec: Template Args Passed - Token",
+      "scope": "meta.parse-template-call-args.body.lspec constant.language.symbol-reference.lspec",
+      "foreground": "var(syntax_generic_arg_pass)",
+    },
+    {
+      "name": "LangSpec: Token Pair References (Nest Boundaries)",
+      "scope": "constant.language.token-pair-reference.lspec",
+      "font_style": "italic underline",
+      "foreground": "var(syntax_modifier)"
+    },
+    {
+      "name": "LangSpec: State References (Transitions)",
+      "scope": "constant.language.state-reference.lspec",
+      "font_style": "italic",
+      "foreground": "var(syntax_constant)"
     },
     {
       "name": "LangSpec: Expression References",
@@ -424,7 +521,7 @@
     },
     {
       "name": "LangSpec: Logical OR (The Gates)",
-      "scope": "punctuation.pipe.lspec -meta.header, keyword.operator.alternation.lspec",
+      "scope": "punctuation.pipe.lspec -meta.header, keyword.operator.alternation",
       "font_style": "bold",
       "foreground": "var(syntax_operator_logic)"
     },
@@ -436,9 +533,33 @@
     },
     {
       "name": "LangSpec: Parse Groups (Execution Boundaries)",
-      "scope": "meta.parse-group.body.lspec punctuation.section.parens",
+      "scope": "meta.parse-group.body.lspec punctuation.section.parens -(meta.parse-template-call-args-segment.body)",
       "font_style": "bold",
       "foreground": "var(syntax_operator_logic)"
+    },
+    // ==========================================
+    // EBNF
+    // ==========================================
+    {
+      "name": "EBNF: Quantifiers (The Mutations)",
+      "scope": "keyword.operator.optional.ebnf, keyword.operator.star.ebnf, keyword.operator.plus.ebnf",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_math)"
+    },
+    {
+      "name": "EBNF: Parse Groups (Execution Boundaries)",
+      "scope": "meta.production-group.body.ebnf punctuation.section.parens",
+      "font_style": "bold",
+      "foreground": "var(syntax_operator_logic)"
+    },
+    // ==========================================
+    // Helm
+    // ==========================================
+    {
+      "name": "Helm: Target Reference (The Edge Pointer)",
+      "scope": "variable.other.target.reference.helm",
+      "font_style": "italic",
+      "foreground": "var(syntax_target_node)"
     },
     // ==========================================
     // RULEFORGE
@@ -488,7 +609,7 @@
     // ==========================================
     {
       "name": "Go Mod: Module Paths (The Network Data)",
-      "scope": "string.unquoted.module-path.gomod, entity.name.reference.module.gomod, entity.name.reference.module.original.gomod, entity.name.reference.module.target.gomod, entity.name.reference.toolchain.gomod, entity.name.reference.tool.gomod",
+      "scope": "string.unquoted.module-path.gomod, entity.name.reference.module.gomod, entity.name.reference.module.original.gomod, entity.name.reference.module.target.gomod, entity.name.reference.toolchain.gomod, entity.name.reference.tool.gomod, entity.name.reference.module.use.gowork",
       "font_style": "",
       "foreground": "var(syntax_string)"
     },
@@ -527,6 +648,91 @@
       "scope": "constant.language.value.gomod",
       "font_style": "bold",
       "foreground": "var(syntax_constant)"
+    },
+    // ==========================================
+    // ECHO LOG TELEMETRY
+    // ==========================================
+    {
+      "name": "Echo Log: Structural Noise (Dim)",
+      "scope": "constant.numeric.timestamp.echo-log, meta.annotation.file.echo-log, punctuation.separator.echo-log",
+      "foreground": "var(syntax_doc)",
+      "font_style": ""
+    },
+    {
+      "name": "Echo Log: Namespace & Origin",
+      "scope": "entity.name.namespace.echo-log",
+      "foreground": "var(syntax_namespace)"
+    },
+    {
+      "name": "Echo Log: Message / Event",
+      "scope": "entity.name.function.echo-log",
+      "foreground": "var(syntax_function)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Echo Log: Payload Keys",
+      "scope": "variable.parameter.key.echo-log",
+      "foreground": "var(syntax_mapping_keys)",
+      "font_style": "italic"
+    },
+    {
+      "name": "Echo Log: Payload Assignment Operator",
+      "scope": "keyword.operator.assignment.echo-log",
+      "foreground": "var(base_neutral_dim)"
+    },
+    {
+      "name": "Echo Log: Level TRACE (Ghosted)",
+      "scope": "message.level.trace.echo-log",
+      "foreground": "var(base_neutral_dim)"
+    },
+    {
+      "name": "Echo Log: Level DEBUG (Muted)",
+      "scope": "message.level.debug.echo-log",
+      "foreground": "var(syntax_reference)"
+    },
+    {
+      "name": "Echo Log: Level INFO (Standard)",
+      "scope": "message.level.info.echo-log",
+      "foreground": "var(syntax_primitive_type)"
+    },
+    {
+      "name": "Echo Log: Level NOTICE (Elevated)",
+      "scope": "message.level.notice.echo-log",
+      "foreground": "var(syntax_entity)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Echo Log: Level WARNING (Alert)",
+      "scope": "message.level.warning.echo-log",
+      "foreground": "var(base_alert)",
+      "font_style": "bold"
+    },
+    {
+      "name": "Echo Log: Level ERROR / CRITICAL (Failure)",
+      "scope": "message.level.error.echo-log, message.level.critical.echo-log",
+      "foreground": "var(base_error)",
+      "font_style": "bold underline"
+    },
+    {
+      "name": "Echo Log: Message / Event",
+      "scope": "string.unquoted.message.echo-log",
+      "foreground": "var(syntax_string)",
+      "font_style": ""
+    },
+{
+      "name": "Echo Log: Warning Line Background",
+      "scope": "meta.line.warning.echo-log",
+      "background": "#FF9F1C15" // 15% opacity of base_alert
+    },
+    {
+      "name": "Echo Log: Error Line Background",
+      "scope": "meta.line.error.echo-log",
+      "background": "#FF003C20" // 20% opacity of base_error
+    },
+    {
+      "name": "Echo Log: Critical Line Background",
+      "scope": "meta.line.critical.echo-log",
+      "background": "#FF003C35" // 35% opacity of base_error
     },
     // ==========================================
     // TIER 5: SYSTEM ALERTS & FALLBACKS
