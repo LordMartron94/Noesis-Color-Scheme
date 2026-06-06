@@ -136,16 +136,23 @@
     // ==========================================
     {
       "name": "Control Flow (The Brain)",
-      "scope": "keyword.control, keyword.other - (keyword.declaration | storage.type | storage.modifier), keyword.gomod",
+      "scope": "keyword.control - (meta.preprocessor), keyword.other - (keyword.declaration | storage.type | storage.modifier), keyword.gomod",
       "font_style": "italic",
       "foreground": "var(syntax_keyword)"
     },
     {
       "name": "Engine Directives (Compile-Time State)",
-      "scope": "variable.language.compiler, punctuation.definition.variable.compiler, variable.language.compiler.directive",
+      "scope": "variable.language.compiler, punctuation.definition.variable.compiler, variable.language.compiler.directive, meta.preprocessor",
       "font_style": "italic bold underline",
       "foreground": "var(syntax_keyword)",
       "background": "var(syntax_block_bg)",
+    },
+    {
+      "name": "C/C++: Include Directives (The Gateway)",
+      "scope": "meta.preprocessor.include.c, keyword.control.import.include.c, keyword.control.import.include.c++",
+      "font_style": "italic",
+      "foreground": "var(syntax_keyword)",
+      "background": "var(base_bg_0)",
     },
     {
       "name": "Logical & Comparison Operators (The Gates)",
@@ -197,7 +204,7 @@
     },
     {
       "name": "User-Defined Types, Classes, and Modules (The Data Domain)",
-      "scope": "entity.name.interface, entity.other.pseudo-class, entity.name.type, entity.name.class, entity.name.module, entity.name.label, storage.type, variable.parameter.type, variable.other.type",
+      "scope": "entity.name.struct, entity.name.enum, entity.name.interface, entity.other.pseudo-class, entity.name.type, entity.name.class, entity.name.module, entity.name.label, storage.type, variable.parameter.type, variable.other.type, entity.name.binding",
       "font_style": "bold",
       "foreground": "var(syntax_entity)"
     },
@@ -318,6 +325,12 @@
       "foreground": "var(syntax_constant)"
     },
     {
+      "name": "C/C++: Enum Constants (Immutable Integers)",
+      "scope": "meta.enum.c meta.block.c entity.name.constant.c",
+      "font_style": "bold",
+      "foreground": "var(syntax_constant)"
+    },
+    {
       "name": "Constant Properties (Object State Lookups)",
       "scope": "variable.other.constant.property, variable.other.constant",
       "font_style": "italic bold",
@@ -413,6 +426,15 @@
       "scope": "variable.annotation, meta.annotation.identifier, meta.annotation",
       "font_style": "italic",
       "foreground": "var(syntax_attribute)"
+    },
+    // ==========================================
+    // C / C++ 
+    // ==========================================
+    {
+      "name": "C/C++: Include Paths (External Pointers)",
+      "scope": "meta.preprocessor.include.c string.quoted.double.c | string.quoted.other.c",
+      "font_style": "italic",
+      "foreground": "var(syntax_module_ref)"
     },
     // ==========================================
     // JS & TS
@@ -719,7 +741,7 @@
       "foreground": "var(syntax_string)",
       "font_style": ""
     },
-{
+    {
       "name": "Echo Log: Warning Line Background",
       "scope": "meta.line.warning.echo-log",
       "background": "#FF9F1C15" // 15% opacity of base_alert
@@ -737,6 +759,11 @@
     // ==========================================
     // TIER 5: SYSTEM ALERTS & FALLBACKS
     // ==========================================
+    {
+      "name": "LSP Semantic Tokens",
+      "scope": "meta.semantic-token",
+      "foreground": "#FF00FF"
+    },
     {
       "name": "Fallback",
       "scope": "source",
