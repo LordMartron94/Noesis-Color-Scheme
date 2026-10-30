@@ -25,6 +25,7 @@
     "base_bg_1": "#111520", // Slightly elevated, gutters
     "base_bg_2": "#1A2030", // Selection areas
     "base_bg_3": "#232A3F", // Highlights/Active lines
+    "bg_semantics": "#0B0E15",
     // The Noise (Neutrals - for structural UI)
     "base_neutral_dim": "#465173", // Barely visible (Docs, hidden characters)
     "base_neutral_mid": "#6B7A99", // UI borders, line numbers
@@ -83,11 +84,16 @@
     "syntax_module_ref": "var(base_neutral_bright)",
     "syntax_property": "var(base_fg_main)",
     "syntax_block_bg": "var(base_bg_1)",
+    // "syntax_block_bg": "red",
     "syntax_architecture_boundary": "var(base_mint)",
     "syntax_target_node": "var(base_sapphire)",
     // Specific Philosophy Mappings
     "syntax_doc": "var(base_neutral_dim)",
     "syntax_comment": "var(base_alert)",
+    // Hex / Memory State
+    "syntax_memory_address": "var(base_neutral_mid)",
+    "syntax_hex_primary": "var(base_fg_main)",
+    "syntax_hex_secondary": "var(base_neutral_bright)",
     // Git & Status
     "git_added": "var(base_success)",
     "git_modified": "var(base_alert)",
@@ -135,24 +141,33 @@
     // TIER 1: CORE LOGIC & ARCHITECTURE
     // ==========================================
     {
+      "name": "Meta blocks",
+      "scope": "meta.preprocessor",
+      "background": "var(syntax_block_bg)",
+    },
+    {
       "name": "Control Flow (The Brain)",
-      "scope": "keyword.control - (meta.preprocessor), keyword.other - (keyword.declaration | storage.type | storage.modifier), keyword.gomod",
+      "scope": "keyword.control - (meta.preprocessor), keyword.other - (keyword.declaration | storage.type | storage.modifier), keyword.gomod, keyword.ascii-start.hex",
       "font_style": "italic",
       "foreground": "var(syntax_keyword)"
     },
     {
       "name": "Engine Directives (Compile-Time State)",
-      "scope": "variable.language.compiler, punctuation.definition.variable.compiler, variable.language.compiler.directive, meta.preprocessor",
+      "scope": "variable.language.compiler, punctuation.definition.variable.compiler, variable.language.compiler.directive, meta.preprocessor - (meta.preprocessor.macro)",
       "font_style": "italic bold underline",
       "foreground": "var(syntax_keyword)",
-      "background": "var(syntax_block_bg)",
     },
     {
       "name": "C/C++: Include Directives (The Gateway)",
       "scope": "meta.preprocessor.include.c, keyword.control.import.include.c, keyword.control.import.include.c++",
       "font_style": "italic",
       "foreground": "var(syntax_keyword)",
-      "background": "var(base_bg_0)",
+    },
+    {
+      "name": "C/C++: Define Directives",
+      "scope": "meta.preprocessor.macro keyword.control.import.define",
+      "font_style": "italic underline",
+      "foreground": "var(syntax_keyword)",
     },
     {
       "name": "Logical & Comparison Operators (The Gates)",
@@ -174,7 +189,7 @@
     },
     {
       "name": "Architecture Declarations (The Blueprints)",
-      "scope": "keyword.other.version, keyword.declaration.module, storage.type.function, keyword.declaration.function, storage.type.class, keyword.declaration.class, storage.type.struct, keyword.declaration.struct, storage.type.enum, keyword.declaration.enum, storage.type.interface, keyword.declaration.interface, storage.type.type, keyword.declaration.type, storage.type.namespace, keyword.declaration.namespace, keyword.declaration.map, keyword.declaration.go",
+      "scope": "keyword.declaration.union, keyword.other.version, keyword.declaration.module, storage.type.function, keyword.declaration.function, storage.type.class, keyword.declaration.class, storage.type.struct, keyword.declaration.struct, storage.type.enum, keyword.declaration.enum, storage.type.interface, keyword.declaration.interface, storage.type.type, keyword.declaration.type, storage.type.namespace, keyword.declaration.namespace, keyword.declaration.map, keyword.declaration.go",
       "font_style": "italic",
       "foreground": "var(syntax_keyword)"
     },
@@ -325,6 +340,13 @@
       "foreground": "var(syntax_constant)"
     },
     {
+      "name": "C/C++: Preprocessor Constants (Defined Macros)",
+      "scope": "entity.name.constant.preprocessor, meta.semantic-token.macro",
+      "font_style": "bold",
+      "foreground": "var(syntax_constant)",
+      "background": "var(syntax_block_bg)",
+    },
+    {
       "name": "C/C++: Enum Constants (Immutable Integers)",
       "scope": "meta.enum.c meta.block.c entity.name.constant.c",
       "font_style": "bold",
@@ -340,7 +362,7 @@
       "name": "Built-In Constants & Enums",
       "scope": "constant.language, support.constant.font-style",
       "font_style": "bold underline",
-      "foreground": "var(syntax_constant)"
+      "foreground": "var(syntax_constant)",
     },
     // ==========================================
     // TIER 3: STRUCTURAL NOISE
@@ -352,7 +374,7 @@
     },
     {
       "name": "Documentation (Dim)",
-      "scope": "comment.block, string.quoted.docstring",
+      "scope": "comment.block, string.quoted.docstring, comment.ascii.hex",
       "font_style": "italic",
       "foreground": "var(syntax_doc)"
     },
@@ -365,6 +387,24 @@
     // ==========================================
     // TIER 4: SPECIFIC LANGUAGE OVERRIDES
     // ==========================================
+    {
+      "name": "Hex Dump: Memory Address (Structural Coordinate)",
+      "scope": "source.hex dump.hex keyword.address.hex",
+      "font_style": "",
+      "foreground": "var(syntax_memory_address)"
+    },
+    {
+      "name": "Hex Dump: Byte Upper Nibble (Primary Payload)",
+      "scope": "source.hex dump.hex raw.byte.hex raw.nibble.upper.hex",
+      "font_style": "bold",
+      "foreground": "var(syntax_hex_primary)"
+    },
+    {
+      "name": "Hex Dump: Byte Lower Nibble (Secondary Payload)",
+      "scope": "source.hex dump.hex raw.byte.hex raw.nibble.lower.hex",
+      "font_style": "",
+      "foreground": "var(syntax_hex_secondary)"
+    },
     {
       "name": "JSON/Dict Keys and Schema Keywords",
       "scope": "meta.mapping.key, source.json.sublime.color-scheme keyword.other, keyword.other.rule.sublime-color-scheme, keyword.other.main.sublime-color-scheme, keyword.other.variables.sublime-color-scheme",
@@ -432,7 +472,7 @@
     // ==========================================
     {
       "name": "C/C++: Include Paths (External Pointers)",
-      "scope": "meta.preprocessor.include.c string.quoted.double.c | string.quoted.other.c",
+      "scope": "meta.preprocessor.include.c string.quoted.double.c | string.quoted.other.c | string.quoted.other.lt-gt.include.c, string.quoted.double.include.c",
       "font_style": "italic",
       "foreground": "var(syntax_module_ref)"
     },
@@ -450,48 +490,48 @@
     // ==========================================
     {
       "name": "LangSpec: Elevated Block Backgrounds",
-      "scope": "meta.header.body.lspec, meta.meta-section.body.lspec",
+      "scope": "meta.header.body.rosetta, meta.meta-section.body.rosetta",
       "background": "var(syntax_block_bg)"
     },
     {
       "name": "LangSpec: Language Identity (The God Entity)",
-      "scope": "entity.name.language.lspec",
+      "scope": "entity.name.language.rosetta",
       "font_style": "bold",
       "foreground": "var(syntax_entity)"
     },
     {
       "name": "LangSpec: Section Boundaries (The Absolute Framework)",
-      "scope": "keyword.declaration.import.lspec, keyword.pragma.lspec, keyword.tool.lspec, keyword.lspec.lspec, keyword.declaration.pattern.lspec, keyword.declaration.lex.lspec, keyword.declaration.parse.lspec, keyword.declaration.pratt.lspec, keyword.declaration.ignore.lspec",
+      "scope": "keyword.declaration.import.rosetta, keyword.pragma.rosetta, keyword.tool.rosetta, keyword.rosetta.rosetta, keyword.declaration.pattern.rosetta, keyword.declaration.lex.rosetta, keyword.declaration.parse.rosetta, keyword.declaration.pratt.rosetta, keyword.declaration.ignore.rosetta",
       "font_style": "bold",
       "foreground": "var(syntax_architecture_boundary)",
     },
     {
       "name": "LangSpec: Parse Rules (Function Declarations)",
-      "scope": "entity.name.function.parser-expression.lspec, entity.name.function.parser-rule.lspec, entity.name.template.lspec",
+      "scope": "entity.name.function.parser-expression.rosetta, entity.name.function.parser-rule.rosetta, entity.name.template.rosetta",
       "font_style": "bold",
       "foreground": "var(syntax_function)"
     },
     {
       "name": "LangSpec: User-Defined Tokens & Roles (The Birth)",
-      "scope": "entity.name.pattern.constant.lspec, entity.name.token.lspec, entity.name.token-role.lspec, entity.name.type.parser-node.lspec, entity.name.token-pair",
+      "scope": "entity.name.pattern.constant.rosetta, entity.name.token.rosetta, entity.name.token-role.rosetta, entity.name.type.parser-node.rosetta, entity.name.token-pair",
       "font_style": "bold",
       "foreground": "var(syntax_entity)"
     },
     {
       "name": "LangSpec: Import Path (The External Source)",
-      "scope": "string.quoted.double.import.lspec",
+      "scope": "string.quoted.double.import.rosetta",
       "font_style": "italic",
       "foreground": "var(syntax_string)"
     },
     {
       "name": "LangSpec: Import Alias (The Local Pointer)",
-      "scope": "entity.name.import.alias.lspec",
+      "scope": "entity.name.import.alias.rosetta",
       "font_style": "bold italic",
       "foreground": "var(syntax_entity)"
     },
     {
       "name": "LangSpec: References & Calls (The Life/Pointers)",
-      "scope": "constant.language.pattern-reference.lspec, constant.language.token-reference.lspec, constant.language.symbol-reference.lspec, constant.language.token-role-reference.lspec, entity.name.function.expression-reference.lspec",
+      "scope": "constant.language.pattern-reference.rosetta, constant.language.token-reference.rosetta, constant.language.symbol-reference.rosetta, constant.language.token-role-reference.rosetta, entity.name.function.expression-reference.rosetta",
       "font_style": "italic",
       "foreground": "var(syntax_reference)"
     },
@@ -504,58 +544,58 @@
     },
     {
       "name": "LangSpec: Template Args Passed - Section",
-      "scope": "meta.parse-template-call-args.body.lspec",
+      "scope": "meta.parse-template-call-args.body.rosetta",
       "background": "var(syntax_block_bg)"
     },
     {
       "name": "LangSpec: Template Args Passed - Token",
-      "scope": "meta.parse-template-call-args.body.lspec constant.language.symbol-reference.lspec",
+      "scope": "meta.parse-template-call-args.body.rosetta constant.language.symbol-reference.rosetta",
       "foreground": "var(syntax_generic_arg_pass)",
     },
     {
       "name": "LangSpec: Token Pair References (Nest Boundaries)",
-      "scope": "constant.language.token-pair-reference.lspec",
+      "scope": "constant.language.token-pair-reference.rosetta",
       "font_style": "italic underline",
       "foreground": "var(syntax_modifier)"
     },
     {
       "name": "LangSpec: State References (Transitions)",
-      "scope": "constant.language.state-reference.lspec",
+      "scope": "constant.language.state-reference.rosetta",
       "font_style": "italic",
       "foreground": "var(syntax_constant)"
     },
     {
       "name": "LangSpec: Expression References",
-      "scope": "entity.name.function.expression-reference.lspec",
+      "scope": "entity.name.function.expression-reference.rosetta",
       "font_style": "italic underline",
     },
     {
       "name": "LangSpec: AST Modifiers (The Traits)",
-      "scope": "keyword.operator.transparent.lspec, keyword.operator.virtual.lspec, keyword.operator.implicit.lspec",
+      "scope": "keyword.operator.transparent.rosetta, keyword.operator.virtual.rosetta, keyword.operator.implicit.rosetta",
       "font_style": "italic",
       "foreground": "var(syntax_modifier)"
     },
     {
       "name": "LangSpec: Parser Control Flow (The Engine)",
-      "scope": "keyword.operator.nest.lspec, keyword.operator.sync.lspec, keyword.operator.predict.lspec",
+      "scope": "keyword.operator.nest.rosetta, keyword.operator.sync.rosetta, keyword.operator.predict.rosetta",
       "font_style": "bold",
       "foreground": "var(syntax_keyword)"
     },
     {
       "name": "LangSpec: Logical OR (The Gates)",
-      "scope": "punctuation.pipe.lspec -meta.header, keyword.operator.alternation",
+      "scope": "punctuation.pipe.rosetta -meta.header, keyword.operator.alternation",
       "font_style": "bold",
       "foreground": "var(syntax_operator_logic)"
     },
     {
       "name": "LangSpec: Quantifiers (The Mutations)",
-      "scope": "keyword.operator.optional.lspec, keyword.operator.star.lspec, keyword.operator.plus.lspec",
+      "scope": "keyword.operator.optional.rosetta, keyword.operator.star.rosetta, keyword.operator.plus.rosetta",
       "font_style": "bold",
       "foreground": "var(syntax_operator_math)"
     },
     {
       "name": "LangSpec: Parse Groups (Execution Boundaries)",
-      "scope": "meta.parse-group.body.lspec punctuation.section.parens -(meta.parse-template-call-args-segment.body)",
+      "scope": "meta.parse-group.body.rosetta punctuation.section.parens -(meta.parse-template-call-args-segment.body)",
       "font_style": "bold",
       "foreground": "var(syntax_operator_logic)"
     },
@@ -762,7 +802,7 @@
     {
       "name": "LSP Semantic Tokens",
       "scope": "meta.semantic-token",
-      "foreground": "#FF00FF"
+      "background": "var(bg_semantics)"
     },
     {
       "name": "Fallback",
